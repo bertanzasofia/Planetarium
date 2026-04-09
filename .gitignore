@@ -1,0 +1,13 @@
+# File compilati da Java
+*.class
+
+# Cartelle specifiche di IntelliJ
+.idea/
+*.iml
+out/
+gen/
+
+# File di sistema
+Thumbs.db
+.DS_Store
+
