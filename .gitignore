@@ -1,13 +1,69 @@
-# File compilati da Java
+# === JAVA & COMPILAZIONE ===
 *.class
+*.log
+*.ctxt
+*.mtj.tmp/
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
 
-# Cartelle specifiche di IntelliJ
+# === INTELLIJ IDEA (Il tuo IDE attuale) ===
 .idea/
 *.iml
+*.iws
+*.ipr
 out/
 gen/
 
-# File di sistema
+# === ECLIPSE ===
+.metadata/
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.classpath
+.project
+.factorypath
+.springBeans
+.sts4-cache
+
+# === VS CODE ===
+.vscode/
+.history/
+*.code-workspace
+
+# === NETBEANS ===
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# === BUILD TOOLS (Maven/Gradle) ===
+# Utile se un domani userai questi strumenti per gestire le librerie
+build/
+target/
+.gradle/
+.mvn/
+
+# === SISTEMA OPERATIVO ===
+# Windows
 Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+
+# Mac OS
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
 
