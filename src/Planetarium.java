@@ -13,9 +13,19 @@ public class Planetarium {
 
             switch (scelta){
                 case 1:
-                    // aggiungi Corpo Celeste
+                    int sceltaCorpo = InputData.readIntegerBetween("Cosa vuoi aggiungere? 1- Pianeta 2- Luna", 1, 2);
+                    switch (sceltaCorpo) {
+                        case 1: // aggiungi pianeta
+                            stella.aggiungiPianeta(stella);
+
+                            break;
+                        case 2: // aggiungi luna
+                            break;
+                    }
+
                     break;
                 case 2: // rimuovi Corpo Celeste
+
                     break;
                 case 3: // toString Sistema (lista corpi celesti)
                     break;
