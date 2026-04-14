@@ -13,6 +13,19 @@ public class Planetarium {
 
             switch (scelta){
                 case 1:
+                    // aggiungi Corpo Celeste
+                    break;
+                case 2: // rimuovi Corpo Celeste
+                    break;
+                case 3: // toString Sistema (lista corpi celesti)
+                    break;
+                case 4: // calcola Centro di massa
+                    break;
+                case 5: // calcola distanza / percorso (rotta)
+                    break;
+                case 6: // verifica collisioni
+                    break;
+                case 7: // cerca Corpo Celeste (se cerco luna identificare il pianeta + stampa info corpo cercato)
                     break;
 
                 case 0:
