@@ -1,28 +1,28 @@
 import arnaldoLib.InputData;
 
 public class Planetarium {
-    static void main(String[] args) {
+    public static void main(String[] args) {
         System.out.println("******* Benvenuto in Planetarium, inserisci la stella di riferimento del sistema per iniziare *******");
         Stella stella = inizializzaSistemaStellare();
 
         int scelta;
         do{
             // todo: stampa menù delle azioni disponibili
-
+            System.out.println("Azioni possibili sulla mappa galattica:");
+            System.out.println("1-Aggiungi corpo celeste | 2-Rimuovi corpo celeste | 0-Esci");
             scelta = InputData.readIntegerBetween("\n******* scegliere un'opzione: ", 0,1);
 
             switch (scelta){
-                case 1:
+                case 1: // scelta per aggiungere un corpo celeste
                     int sceltaCorpo = InputData.readIntegerBetween("Cosa vuoi aggiungere? 1- Pianeta 2- Luna", 1, 2);
                     switch (sceltaCorpo) {
                         case 1: // aggiungi pianeta
-                            stella.aggiungiPianeta(stella);
-
+                            stella.aggiungiPianeta(stella); //stella hardcoded nel codice; se avremo più stelle variabilizzeremo
                             break;
                         case 2: // aggiungi luna
+                            stella.aggiungiLuna(stella);
                             break;
                     }
-
                     break;
                 case 2: // rimuovi Corpo Celeste
 
@@ -37,7 +37,6 @@ public class Planetarium {
                     break;
                 case 7: // cerca Corpo Celeste (se cerco luna identificare il pianeta + stampa info corpo cercato)
                     break;
-
                 case 0:
                     System.out.println("\n******* grazie per aver usato il nostro sistema, ciao ciao ******* ");
                     break;

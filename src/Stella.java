@@ -11,6 +11,22 @@ public class Stella extends CorpoCeleste {
         this.pianeti = new ArrayList<>();
     }
 
+    public Pianeta ricercaPianeta(String pianetaCercato){
+        //Ricerca pianeta per ID univoco
+        for(Pianeta pianeta: pianeti)
+        {
+            if(pianeta.getCodiceUnivoco().equals(pianetaCercato) || pianeta.getNome().equals(pianetaCercato))
+            {
+                return pianeta;
+            }
+        }
+        return null;
+    }
+
+    public List<Pianeta> getPianeti() {
+        return pianeti;
+    }
+
     public void aggiungiPianeta(Stella nodoRif) {
         String nome = InputData.readNonEmptyString("Inserisci nome pianeta: ", false);
         double massa = InputData.readDoubleWithMinimum("Inserisci massa: ", 0);
@@ -22,13 +38,23 @@ public class Stella extends CorpoCeleste {
         System.out.printf("%s è stato aggiunto, ID: %s", pianeta.getNome(), pianeta.getCodiceUnivoco());
     }
 
-    public void rimuoviPianeta(String idPianeta){
-        for(Pianeta pianeta: pianeti)
-        {
-            if(pianeta.getCodiceUnivoco().equals(idPianeta)){
-                System.out.printf("%s rimosso", pianeta.getNome());
-                pianeti.remove(pianeta);
+    public void aggiungiLuna(Stella stella){ //Questa funzione verifica che il pianeta esista e chiama la funzione aggiungiLuna specifica in Pianeta
+        if(!pianeti.isEmpty()) {
+            String pianetaCercatoString = InputData.readNonEmptyString("Inserisci il pianeta intorno a cui orbita la luna (ID o nome): ", false);
+            Pianeta pianetaCercatoObj = stella.ricercaPianeta(pianetaCercatoString);
+            if(pianetaCercatoObj!=null) {
+                pianetaCercatoObj.aggiungiLuna();
+            }
+            else {
+                System.out.println("Impossibile trovare il pianeta specificato.");
             }
         }
+        else{
+            System.out.println("Si prega di inserire un pianeta prima di continuare.");
+        }
+    }
+
+    public void rimuoviPianeta(String idPianeta){
+        pianeti.remove(ricercaPianeta(idPianeta));
     }
 }
