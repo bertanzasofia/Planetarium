@@ -93,9 +93,41 @@ public class Stella extends CorpoCeleste {
                 System.out.println(pianeta.getLune().toString());
             }
         }
+    }
 
+    public void detectCollisioni(){
+        for(Pianeta pianeta : pianeti) {
+            for(Pianeta pianetaSecondo : pianeti) {
+                if(Math.abs(pianeta.getDistanzaRif()-pianetaSecondo.getDistanzaRif())<0.000001 && !pianeta.equals(pianetaSecondo)) {
+                    if(!pianeta.getListaCollisioni().contains(pianetaSecondo)){
+                        pianeta.aggiungiCollisione(pianetaSecondo);
+                    }
+                }
+                for(Luna luna : pianeta.getLune()) {
+                    //Controllo collisione tra due lune
+                    for(Luna lunaSeconda : pianetaSecondo.getLune()){
+                        if((pianeta.getDistanzaRif() - luna.getDistanzaRif() < pianetaSecondo.getDistanzaRif() + lunaSeconda.getDistanzaRif()) && !luna.getListaCollisioni().contains(lunaSeconda.getNome()) && !luna.equals(lunaSeconda) && !pianeta.equals(pianetaSecondo)){
+                            luna.aggiungiCollisione(lunaSeconda);
+                        }
+                        //Controllo collisione pianeta-luna
+                        if((pianetaSecondo.getDistanzaRif()+lunaSeconda.getDistanzaRif()>pianeta.getDistanzaRif()) && !pianeta.getLune().contains(lunaSeconda) && !pianeta.getListaCollisioni().contains(lunaSeconda)){
+                            pianeta.aggiungiCollisione(lunaSeconda);
+                            lunaSeconda.aggiungiCollisione(pianeta);
+                        }
+                    }
+                }
+            }
 
-
-
+        }
+        for(Pianeta pianeta : pianeti) {
+            if(!pianeta.getListaCollisioni().isEmpty()) {
+                System.out.println(pianeta.getNome() + " collide con: " + pianeta.getListaCollisioni());
+            }
+            for(Luna luna : pianeta.getLune()){
+                if(!luna.getListaCollisioni().isEmpty()) {
+                    System.out.println(luna.getNome() + " collide con: " + luna.getListaCollisioni());
+                }
+            }
+        }
     }
 }

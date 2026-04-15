@@ -9,6 +9,7 @@ public class Pianeta extends CorpoCeleste {
     private double angoloRif;
     private List<Luna> lune;
     private String nomePianeta;
+    private ArrayList<String> listaCollisioni = new ArrayList<>();
 
     public Pianeta(String nome, double massa, CorpoCeleste nodoRif, double distanzaRif, double angoloRif) {
         double posX = nodoRif.getPosizioneAssoluta().getX() + distanzaRif * Math.cos(Math.toRadians(angoloRif));
@@ -41,6 +42,14 @@ public class Pianeta extends CorpoCeleste {
 
     public List<Luna> getLune() {
         return lune;
+    }
+
+    public ArrayList<String> getListaCollisioni() {
+        return listaCollisioni;
+    }
+
+    public void aggiungiCollisione(CorpoCeleste corpo){
+        listaCollisioni.add(corpo.getNome());
     }
 
     // funzioni specifiche
