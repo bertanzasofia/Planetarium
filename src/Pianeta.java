@@ -50,12 +50,9 @@ public class Pianeta extends CorpoCeleste {
         String nome;
             do {
                 nome = InputData.readNonEmptyString("Inserisci nome luna: ", false);
-                for (Pianeta pianeta : stella.getPianeti()) {
-                    if (pianeta.ricercaLuna(nome) == null && stella.ricercaPianeta(nome) == null) {
-                        lunaDuplicata = false;
-                    } else {
-                        System.out.println("Impossibile aggiungere nomi duplicati.");
-                    }
+                lunaDuplicata = stella.esisteQuestoNome(nome);
+                if(lunaDuplicata){
+                    System.out.println("Impossibile aggiungere nomi duplicati. ");
                 }
             }while(lunaDuplicata);
         double massa = InputData.readDoubleWithMinimum("Inserisci massa: ", 0);
