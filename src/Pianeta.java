@@ -50,7 +50,17 @@ public class Pianeta extends CorpoCeleste {
 
     // funzioni specifiche
     public void aggiungiLuna() {
-        String nome = InputData.readNonEmptyString("Inserisci nome luna: ", false);
+        boolean duplicato = true;
+        String nome;
+        do { //controlliamo che il nome sia univoco
+            nome = InputData.readNonEmptyString("Inserisci nome luna: ", false);
+            if(ricercaLuna(nome)==null) {
+                duplicato = false;
+            }
+            else{
+                System.out.println("Impossibile aggiungere nomi duplicati.");
+            }
+        }while(duplicato);
         double massa = InputData.readDoubleWithMinimum("Inserisci massa: ", 0);
         double distanza = InputData.readDoubleWithMinimum("Inserisci la distanza dal pianeta: ", 0);
         double angolo = InputData.readDouble("Inserisci l'angolo a cui si trova: ");
@@ -58,6 +68,18 @@ public class Pianeta extends CorpoCeleste {
         Luna luna = new Luna(nome, massa, nodoRif, distanza, angolo);
         lune.add(luna);
         System.out.printf("%s è stata aggiunta a %s, ID: %s", luna.getNome(), this.getNomePianeta(), luna.getCodiceUnivoco());
+    }
+
+    public Luna ricercaLuna(String lunaCercata){
+        //Ricerca pianeta per ID univoco
+        for(Luna luna: lune)
+        {
+            if(luna.getCodiceUnivoco().equalsIgnoreCase(lunaCercata) || luna.getNome().equalsIgnoreCase(lunaCercata))
+            {
+                return luna;
+            }
+        }
+        return null;
     }
 
 }
