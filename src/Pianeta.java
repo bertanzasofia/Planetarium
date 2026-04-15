@@ -60,4 +60,16 @@ public class Pianeta extends CorpoCeleste {
         System.out.printf("%s è stata aggiunta a %s, ID: %s", luna.getNome(), this.getNomePianeta(), luna.getCodiceUnivoco());
     }
 
+    public Luna ricercaLuna(String lunaCercata){
+        //Ricerca pianeta per ID univoco
+        for(Luna luna: lune)
+        {
+            if(luna.getCodiceUnivoco().equalsIgnoreCase(lunaCercata) || luna.getNome().equalsIgnoreCase(lunaCercata))
+            {
+                return luna;
+            }
+        }
+        return null;
+    }
+
 }

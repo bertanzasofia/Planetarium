@@ -11,20 +11,21 @@ public class Stella extends CorpoCeleste {
         this.pianeti = new ArrayList<>();
     }
 
+    public List<Pianeta> getPianeti() {
+        return pianeti;
+    }
+
+    //funzioni specifiche
     public Pianeta ricercaPianeta(String pianetaCercato){
         //Ricerca pianeta per ID univoco
         for(Pianeta pianeta: pianeti)
         {
-            if(pianeta.getCodiceUnivoco().equals(pianetaCercato) || pianeta.getNome().equals(pianetaCercato))
+            if(pianeta.getCodiceUnivoco().equalsIgnoreCase(pianetaCercato) || pianeta.getNome().equalsIgnoreCase(pianetaCercato))
             {
                 return pianeta;
             }
         }
         return null;
-    }
-
-    public List<Pianeta> getPianeti() {
-        return pianeti;
     }
 
     public void aggiungiPianeta(Stella nodoRif) {
