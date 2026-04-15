@@ -28,4 +28,11 @@ public abstract class CorpoCeleste {
     public Punto getPosizioneAssoluta() {
         return posizioneAssoluta;
     }
+
+    @Override
+    public String toString() {
+        return "codiceUnivoco='" + codiceUnivoco + '\'' +
+                ", nome='" + nome + '\'' +
+                ", massa=" + massa;
+    }
 }

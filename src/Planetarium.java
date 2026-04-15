@@ -1,4 +1,5 @@
 import arnaldoLib.InputData;
+import mylib.InputDati;
 
 public class Planetarium {
     public static void main(String[] args) {
@@ -9,12 +10,11 @@ public class Planetarium {
         do{
             // todo: stampa menù delle azioni disponibili
             System.out.println("Azioni possibili sulla mappa galattica:");
-            System.out.println("1-Aggiungi corpo celeste | 2-Rimuovi corpo celeste | 0-Esci");
-            scelta = InputData.readIntegerBetween("\n******* scegliere un'opzione: ", 0,1);
-
+            System.out.println("1-Aggiungi corpo celeste | 2-Rimuovi corpo celeste | 3-Lista sistema planetario | 4-Calcola centro di massa | 5-Calcola rotta | 6-Verifica collisioni | 7-Ricerca corpo celeste | 0-Esci");
+            scelta = InputDati.leggiIntero("\n******* scegliere un'opzione: ", 0,7);
             switch (scelta){
                 case 1: // scelta per aggiungere un corpo celeste
-                    int sceltaCorpo = InputData.readIntegerBetween("Cosa vuoi aggiungere? 1- Pianeta 2- Luna", 1, 2);
+                    int sceltaCorpo = InputDati.leggiIntero("Cosa vuoi aggiungere? 1- Pianeta | 2- Luna: ", 1, 2);
                     switch (sceltaCorpo) {
                         case 1: // aggiungi pianeta
                             stella.aggiungiPianeta(stella); //stella hardcoded nel codice; se avremo più stelle variabilizzeremo
@@ -28,6 +28,8 @@ public class Planetarium {
 
                     break;
                 case 3: // toString Sistema (lista corpi celesti)
+                    stella.listaSistema();
+
                     break;
                 case 4: // calcola Centro di massa
                     break;
@@ -35,7 +37,9 @@ public class Planetarium {
                     break;
                 case 6: // verifica collisioni
                     break;
-                case 7: // cerca Corpo Celeste (se cerco luna identificare il pianeta + stampa info corpo cercato)
+                case 7: //// cerca Corpo Celeste (se cerco luna identificare il pianeta + stampa info corpo cercato)
+                    //String ricerca = InputDati.leggiStringaNonVuota("Inserisci codice id:");
+                    //stella.ricercaPianeta(ricerca);
                     break;
                 case 0:
                     System.out.println("\n******* grazie per aver usato il nostro sistema, ciao ciao ******* ");
@@ -51,8 +55,8 @@ public class Planetarium {
         String nomeStella;
         double massaStella;
 
-        nomeStella = InputData.readNonEmptyString("nome stella: ", false);
-        massaStella = InputData.readDouble("massa stella: ");
+        nomeStella = InputData.readNonEmptyString("Nome stella: ", false);
+        massaStella = InputData.readDouble("Massa stella: ");
         return new Stella(nomeStella, massaStella);
     }
 }

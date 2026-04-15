@@ -15,6 +15,8 @@ public class Luna extends CorpoCeleste {
 
     @Override
     public String toString() {
-        return "";
+        return "Luna" + super.toString();
     }
+
+
 }

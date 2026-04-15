@@ -1,5 +1,6 @@
 import arnaldoLib.InputData;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,5 +70,19 @@ public class Stella extends CorpoCeleste {
 
     public void rimuoviPianeta(String idPianeta){
         pianeti.remove(ricercaPianeta(idPianeta));
+    }
+
+    public void listaSistema(){
+        System.out.println("Stella : " + super.toString());
+        for(Pianeta pianeta : pianeti){
+            System.out.println(pianeta.toString());
+            for(Luna luna : pianeta.getLune()){
+                System.out.println(pianeta.getLune().toString());
+            }
+        }
+
+
+
+
     }
 }
