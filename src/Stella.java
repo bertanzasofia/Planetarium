@@ -1,6 +1,5 @@
 import arnaldoLib.InputData;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,17 +33,9 @@ public class Stella extends CorpoCeleste {
         String nome;
         do {
             nome = InputData.readNonEmptyString("Inserisci nome pianeta: ", false);
-            if(!pianeti.isEmpty()) {
-                for (Pianeta pianeta : getPianeti()) {
-                    if (pianeta.ricercaLuna(nome) == null && ricercaPianeta(nome) == null) {
-                        duplicato = false;
-                    } else {
-                        System.out.println("Impossibile aggiungere nomi duplicati.");
-                    }
-                }
-            }
-            else {
-                 duplicato=  false;
+            duplicato = esisteQuestoNome(nome);
+            if(duplicato){
+                System.out.println("Impossibile aggiungere nomi duplicati. ");
             }
         }while(duplicato);
 
@@ -55,6 +46,22 @@ public class Stella extends CorpoCeleste {
         Pianeta pianeta = new Pianeta(nome, massa, nodoRif, distanza, angolo);
         pianeti.add(pianeta);
         System.out.printf("%s è stato aggiunto, ID: %s", pianeta.getNome(), pianeta.getCodiceUnivoco());
+    }
+
+    public boolean esisteQuestoNome(String nome) {
+        boolean duplicato = true;
+        if(pianeti.isEmpty()) {
+            return false;
+        }
+        else{
+            for (Pianeta pianeta : getPianeti()) {
+                if (ricercaPianeta(nome) == null && pianeta.ricercaLuna(nome) == null) {
+                    duplicato = false;
+                }
+            }
+        }
+
+        return duplicato;
     }
 
     public void aggiungiLuna(Stella stella){ //Questa funzione verifica che il pianeta esista e chiama la funzione aggiungiLuna specifica in Pianeta
