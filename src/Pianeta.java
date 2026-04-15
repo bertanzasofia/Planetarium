@@ -44,18 +44,20 @@ public class Pianeta extends CorpoCeleste {
     }
 
     // funzioni specifiche
-    public void aggiungiLuna() {
+    public void aggiungiLuna(Stella stella) {
         boolean duplicato = true;
+        boolean lunaDuplicata = true;
         String nome;
-        do { //controlliamo che il nome sia univoco
-            nome = InputData.readNonEmptyString("Inserisci nome luna: ", false);
-            if(ricercaLuna(nome)==null) {
-                duplicato = false;
-            }
-            else{
-                System.out.println("Impossibile aggiungere nomi duplicati.");
-            }
-        }while(duplicato);
+            do {
+                nome = InputData.readNonEmptyString("Inserisci nome luna: ", false);
+                for (Pianeta pianeta : stella.getPianeti()) {
+                    if (pianeta.ricercaLuna(nome) == null && stella.ricercaPianeta(nome) == null) {
+                        lunaDuplicata = false;
+                    } else {
+                        System.out.println("Impossibile aggiungere nomi duplicati.");
+                    }
+                }
+            }while(lunaDuplicata);
         double massa = InputData.readDoubleWithMinimum("Inserisci massa: ", 0);
         double distanza = InputData.readDoubleWithMinimum("Inserisci la distanza dal pianeta: ", 0);
         double angolo = InputData.readDouble("Inserisci l'angolo a cui si trova: ");

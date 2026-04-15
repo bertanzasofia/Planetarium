@@ -34,12 +34,17 @@ public class Stella extends CorpoCeleste {
         String nome;
         do {
             nome = InputData.readNonEmptyString("Inserisci nome pianeta: ", false);
-            if(ricercaPianeta(nome)==null)
-            {
-                duplicato = false;
+            if(!pianeti.isEmpty()) {
+                for (Pianeta pianeta : getPianeti()) {
+                    if (pianeta.ricercaLuna(nome) == null && ricercaPianeta(nome) == null) {
+                        duplicato = false;
+                    } else {
+                        System.out.println("Impossibile aggiungere nomi duplicati.");
+                    }
+                }
             }
-            else{
-                System.out.println("Impossibile aggiungere nomi duplicati");
+            else {
+                 duplicato=  false;
             }
         }while(duplicato);
 
@@ -57,7 +62,7 @@ public class Stella extends CorpoCeleste {
             String pianetaCercatoString = InputData.readNonEmptyString("Inserisci il pianeta intorno a cui orbita la luna (ID o nome): ", false);
             Pianeta pianetaCercatoObj = stella.ricercaPianeta(pianetaCercatoString);
             if(pianetaCercatoObj!=null) {
-                pianetaCercatoObj.aggiungiLuna();
+                pianetaCercatoObj.aggiungiLuna(stella);
             }
             else {
                 System.out.println("Impossibile trovare il pianeta specificato.");

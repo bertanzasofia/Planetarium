@@ -2,6 +2,7 @@ public class Luna extends CorpoCeleste {
     private CorpoCeleste nodoRif;
     private double distanzaRif;
     private double angoloRif;
+    private String nome;
 
     public Luna(String nome, double massa, CorpoCeleste nodoRif, double distanzaRif, double angoloRif) {
         double posX = nodoRif.getPosizioneAssoluta().getX() + distanzaRif * Math.cos(Math.toRadians(angoloRif));
@@ -11,6 +12,12 @@ public class Luna extends CorpoCeleste {
         this.nodoRif = nodoRif;
         this.distanzaRif = distanzaRif;
         this.angoloRif = angoloRif;
+        this.nome = nome;
+    }
+
+    @Override
+    public String getNome() {
+        return nome;
     }
 
     @Override
