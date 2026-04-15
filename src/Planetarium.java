@@ -10,7 +10,7 @@ public class Planetarium {
             // todo: stampa menù delle azioni disponibili
             System.out.println("Azioni possibili sulla mappa galattica:");
             System.out.println("1-Aggiungi corpo celeste | 2-Rimuovi corpo celeste | 0-Esci");
-            scelta = InputData.readIntegerBetween("\n******* scegliere un'opzione: ", 0,1);
+            scelta = InputData.readIntegerBetween("\n******* scegliere un'opzione: ", 1,2);
 
             switch (scelta){
                 case 1: // scelta per aggiungere un corpo celeste
