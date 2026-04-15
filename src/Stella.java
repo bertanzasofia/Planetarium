@@ -110,7 +110,7 @@ public class Stella extends CorpoCeleste {
                             luna.aggiungiCollisione(lunaSeconda);
                         }
                         //Controllo collisione pianeta-luna
-                        if((pianetaSecondo.getDistanzaRif()+lunaSeconda.getDistanzaRif()>pianeta.getDistanzaRif()) && !pianeta.getLune().contains(lunaSeconda) && !pianeta.getListaCollisioni().contains(lunaSeconda)){
+                        if((pianetaSecondo.getDistanzaRif()+lunaSeconda.getDistanzaRif()>pianeta.getDistanzaRif()) && !pianeta.getLune().contains(lunaSeconda) && !pianeta.getListaCollisioni().contains(lunaSeconda.getNome())){
                             pianeta.aggiungiCollisione(lunaSeconda);
                             lunaSeconda.aggiungiCollisione(pianeta);
                         }
