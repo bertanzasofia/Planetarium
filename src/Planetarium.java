@@ -10,11 +10,11 @@ public class Planetarium {
             // todo: stampa menù delle azioni disponibili
             System.out.println("Azioni possibili sulla mappa galattica:");
             System.out.println("1-Aggiungi corpo celeste | 2-Rimuovi corpo celeste | 3-Lista sistema planetario | 4-Calcola centro di massa | 5-Calcola rotta | 6-Verifica collisioni | 7-Ricerca corpo celeste | 0-Esci");
-            scelta = InputData.readIntegerBetween("\n******* scegliere un'opzione: ", 0,1);
+            scelta = InputData.readIntegerBetween("\n******* scegliere un'opzione: ", 0,7);
 
             switch (scelta){
                 case 1: // scelta per aggiungere un corpo celeste
-                    int sceltaCorpo = InputData.readIntegerBetween("Cosa vuoi aggiungere? 1- Pianeta 2- Luna", 1, 2);
+                    int sceltaCorpo = InputData.readIntegerBetween("Cosa vuoi aggiungere? 1-Pianeta | 2-Luna: ", 1, 2);
                     switch (sceltaCorpo) {
                         case 1: // aggiungi pianeta
                             stella.aggiungiPianeta(stella); //stella hardcoded nel codice; se avremo più stelle variabilizzeremo
@@ -31,6 +31,9 @@ public class Planetarium {
                     stella.listaSistema();
                     break;
                 case 4: // calcola Centro di massa
+                    System.out.println("La massa totale del sistema planetario: "+ stella.calcolaMassa());
+                    System.out.println("La somma pesata totale del sistema planetario: "+ stella.calcolaSommaPesata().getX() +" "+ stella.calcolaSommaPesata().getY());
+                    System.out.println("Il centro di massa del sistema planetario: "+ stella.centroMassa().getX()+" "+ stella.centroMassa().getY());
                     break;
                 case 5: // calcola distanza / percorso (rotta)
                     break;
@@ -52,8 +55,9 @@ public class Planetarium {
         String nomeStella;
         double massaStella;
 
-        nomeStella = InputData.readNonEmptyString("nome stella: ", false);
-        massaStella = InputData.readDouble("massa stella: ");
+        nomeStella = InputData.readNonEmptyString("Nome stella: ", false);
+        massaStella = InputData.readDouble("Massa stella: ");
+
         return new Stella(nomeStella, massaStella);
     }
 }

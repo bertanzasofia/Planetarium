@@ -57,7 +57,7 @@ public class Pianeta extends CorpoCeleste {
             }while(lunaDuplicata);
         double massa = InputData.readDoubleWithMinimum("Inserisci massa: ", 0);
         double distanza = InputData.readDoubleWithMinimum("Inserisci la distanza dal pianeta: ", 0);
-        double angolo = InputData.readDouble("Inserisci l'angolo a cui si trova: ");
+        double angolo = InputData.readDoubleBetween("Inserisci l'angolo a cui si trova: ",0, 360);
 
         Luna luna = new Luna(nome, massa, nodoRif, distanza, angolo);
         lune.add(luna);
@@ -78,7 +78,8 @@ public class Pianeta extends CorpoCeleste {
 
     @Override
     public String toString() {
-        return "Pianeta" + super.toString();
+        return "Pianeta: " + super.toString();
 
     }
+
 }

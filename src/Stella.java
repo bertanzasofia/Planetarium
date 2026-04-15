@@ -41,11 +41,12 @@ public class Stella extends CorpoCeleste {
 
         double massa = InputData.readDoubleWithMinimum("Inserisci massa: ", 0);
         double distanza = InputData.readDoubleWithMinimum("Inserisci la distanza dalla stella: ", 0);
-        double angolo = InputData.readDouble("Inserisci l'angolo a cui si trova: ");
+        double angolo = InputData.readDoubleBetween("Inserisci l'angolo a cui si trova: ",0,360);
 
         Pianeta pianeta = new Pianeta(nome, massa, nodoRif, distanza, angolo);
         pianeti.add(pianeta);
         System.out.printf("%s è stato aggiunto, ID: %s", pianeta.getNome(), pianeta.getCodiceUnivoco());
+        System.out.println(" ");
     }
 
     public boolean esisteQuestoNome(String nome) {
@@ -84,7 +85,7 @@ public class Stella extends CorpoCeleste {
         pianeti.remove(ricercaPianeta(idPianeta));
     }
 
-    public void listaSistema(){
+    public void listaSistema(){ //Questo metodo stampa la lista del sistema planetario.
         System.out.println("Stella : " + super.toString());
         for(Pianeta pianeta : pianeti){
             System.out.println(pianeta.toString());
@@ -93,8 +94,34 @@ public class Stella extends CorpoCeleste {
             }
         }
 
-
-
-
+    }
+    public double calcolaMassa(){ //calcola la massa totale del sistema planetario
+        double sommaMassa = getMassa();
+        for(Pianeta pianeta: pianeti){
+            sommaMassa += pianeta.getMassa();
+            for (Luna luna : pianeta.getLune()) {
+                sommaMassa += luna.getMassa();
+            }
+        }
+        return sommaMassa;
+    }
+    public Punto calcolaSommaPesata(){//calcola la somma pesata del sistema cioè la massa che moltplica la posizione di ogni corpo celeste
+        double sommaMassaX = getMassa()*getPosizioneAssoluta().getX();
+        double sommaMassaY = getMassa()*getPosizioneAssoluta().getY();
+        for(Pianeta pianeta: pianeti){
+            sommaMassaX += pianeta.getMassa()*pianeta.getPosizioneAssoluta().getX();
+            sommaMassaY += pianeta.getMassa()*pianeta.getPosizioneAssoluta().getY();
+            for (Luna luna : pianeta.getLune()) {
+                sommaMassaX += luna.getMassa()*luna.getPosizioneAssoluta().getX();
+                sommaMassaY += luna.getMassa()*luna.getPosizioneAssoluta().getY();
+            }
+        }
+        return new Punto(sommaMassaX,sommaMassaY);
+    }
+    public Punto centroMassa(){//calcolo del centro di massa
+        double sommaMassa = calcolaMassa();
+        double centroX = calcolaSommaPesata().getX()/ calcolaMassa();
+        double centroY = calcolaSommaPesata().getY()/ calcolaMassa();
+        return new Punto(centroX,centroY);
     }
 }

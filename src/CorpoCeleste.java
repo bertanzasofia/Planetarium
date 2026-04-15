@@ -31,8 +31,6 @@ public abstract class CorpoCeleste {
 
     @Override
     public String toString() {
-        return "codiceUnivoco='" + codiceUnivoco + '\'' +
-                ", nome='" + nome + '\'' +
-                ", massa=" + massa;
+        return  nome + "| Massa: " + massa + "| Posizione X: " + posizioneAssoluta.getX() +" Posizione Y: "+ posizioneAssoluta.getY()+ "| Codice id: " + codiceUnivoco;
     }
 }
