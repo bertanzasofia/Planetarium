@@ -43,11 +43,6 @@ public class Pianeta extends CorpoCeleste {
         return lune;
     }
 
-    @Override
-    public String toString() {
-        return "";
-    }
-
     // funzioni specifiche
     public void aggiungiLuna() {
         boolean duplicato = true;
@@ -82,4 +77,9 @@ public class Pianeta extends CorpoCeleste {
         return null;
     }
 
+    @Override
+    public String toString() {
+        return "Pianeta" + super.toString();
+
+    }
 }
