@@ -130,4 +130,33 @@ public class Stella extends CorpoCeleste {
             }
         }
     }
+    public double calcolaMassa(){ //calcola la massa totale del sistema planetario
+        double sommaMassa = getMassa();
+        for(Pianeta pianeta: pianeti){
+            sommaMassa += pianeta.getMassa();
+            for (Luna luna : pianeta.getLune()) {
+                sommaMassa += luna.getMassa();
+            }
+        }
+        return sommaMassa;
+    }
+    public Punto calcolaSommaPesata(){//calcola la somma pesata del sistema cioè la massa che moltplica la posizione di ogni corpo celeste
+        double sommaMassaX = getMassa()*getPosizioneAssoluta().getX();
+        double sommaMassaY = getMassa()*getPosizioneAssoluta().getY();
+        for(Pianeta pianeta: pianeti){
+            sommaMassaX += pianeta.getMassa()*pianeta.getPosizioneAssoluta().getX();
+            sommaMassaY += pianeta.getMassa()*pianeta.getPosizioneAssoluta().getY();
+            for (Luna luna : pianeta.getLune()) {
+                sommaMassaX += luna.getMassa()*luna.getPosizioneAssoluta().getX();
+                sommaMassaY += luna.getMassa()*luna.getPosizioneAssoluta().getY();
+            }
+        }
+        return new Punto(sommaMassaX,sommaMassaY);
+    }
+    public Punto centroMassa(){//calcolo del centro di massa
+        double sommaMassa = calcolaMassa();
+        double centroX = calcolaSommaPesata().getX()/ calcolaMassa();
+        double centroY = calcolaSommaPesata().getY()/ calcolaMassa();
+        return new Punto(centroX,centroY);
+    }
 }
