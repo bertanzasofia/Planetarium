@@ -9,7 +9,7 @@ public class Planetarium {
         do{
             // todo: stampa menù delle azioni disponibili
             System.out.println("Azioni possibili sulla mappa galattica:");
-            System.out.println("1-Aggiungi corpo celeste | 2-Rimuovi corpo celeste | 0-Esci");
+            System.out.println("1-Aggiungi corpo celeste | 2-Rimuovi corpo celeste | 3-Lista sistema planetario | 4-Calcola centro di massa | 5-Calcola rotta | 6-Verifica collisioni | 7-Ricerca corpo celeste | 0-Esci");
             scelta = InputData.readIntegerBetween("\n******* scegliere un'opzione: ", 0,1);
 
             switch (scelta){
@@ -28,6 +28,7 @@ public class Planetarium {
 
                     break;
                 case 3: // toString Sistema (lista corpi celesti)
+                    stella.listaSistema();
                     break;
                 case 4: // calcola Centro di massa
                     break;
