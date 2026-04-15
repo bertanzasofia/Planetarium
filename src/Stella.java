@@ -1,5 +1,6 @@
 import arnaldoLib.InputData;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,12 +42,11 @@ public class Stella extends CorpoCeleste {
 
         double massa = InputData.readDoubleWithMinimum("Inserisci massa: ", 0);
         double distanza = InputData.readDoubleWithMinimum("Inserisci la distanza dalla stella: ", 0);
-        double angolo = InputData.readDoubleBetween("Inserisci l'angolo a cui si trova: ",0,360);
+        double angolo = InputData.readDouble("Inserisci l'angolo a cui si trova: ");
 
         Pianeta pianeta = new Pianeta(nome, massa, nodoRif, distanza, angolo);
         pianeti.add(pianeta);
         System.out.printf("%s è stato aggiunto, ID: %s", pianeta.getNome(), pianeta.getCodiceUnivoco());
-        System.out.println(" ");
     }
 
     public boolean esisteQuestoNome(String nome) {
@@ -56,7 +56,7 @@ public class Stella extends CorpoCeleste {
         }
         else{
             for (Pianeta pianeta : getPianeti()) {
-                if (pianeta.ricercaLuna(nome) == null && ricercaPianeta(nome) == null) {
+                if (ricercaPianeta(nome) == null && pianeta.ricercaLuna(nome) == null) {
                     duplicato = false;
                 }
             }
@@ -85,7 +85,7 @@ public class Stella extends CorpoCeleste {
         pianeti.remove(ricercaPianeta(idPianeta));
     }
 
-    public void listaSistema(){ //Questo metodo stampa la lista del sistema planetario.
+    public void listaSistema(){
         System.out.println("Stella : " + super.toString());
         for(Pianeta pianeta : pianeti){
             System.out.println(pianeta.toString());
@@ -93,35 +93,41 @@ public class Stella extends CorpoCeleste {
                 System.out.println(pianeta.getLune().toString());
             }
         }
+    }
 
-    }
-    public double calcolaMassa(){ //calcola la massa totale del sistema planetario
-        double sommaMassa = getMassa();
-        for(Pianeta pianeta: pianeti){
-            sommaMassa += pianeta.getMassa();
-            for (Luna luna : pianeta.getLune()) {
-                sommaMassa += luna.getMassa();
+    public void detectCollisioni(){
+        for(Pianeta pianeta : pianeti) {
+            for(Pianeta pianetaSecondo : pianeti) {
+                if(Math.abs(pianeta.getDistanzaRif()-pianetaSecondo.getDistanzaRif())<0.000001 && !pianeta.equals(pianetaSecondo)) {
+                    if(!pianeta.getListaCollisioni().contains(pianetaSecondo)){
+                        pianeta.aggiungiCollisione(pianetaSecondo);
+                    }
+                }
+                for(Luna luna : pianeta.getLune()) {
+                    //Controllo collisione tra due lune
+                    for(Luna lunaSeconda : pianetaSecondo.getLune()){
+                        if((pianeta.getDistanzaRif() - luna.getDistanzaRif() < pianetaSecondo.getDistanzaRif() + lunaSeconda.getDistanzaRif()) && !luna.getListaCollisioni().contains(lunaSeconda.getNome()) && !luna.equals(lunaSeconda) && !pianeta.equals(pianetaSecondo)){
+                            luna.aggiungiCollisione(lunaSeconda);
+                        }
+                        //Controllo collisione pianeta-luna
+                        if((pianetaSecondo.getDistanzaRif()+lunaSeconda.getDistanzaRif()>pianeta.getDistanzaRif()) && !pianeta.getLune().contains(lunaSeconda) && !pianeta.getListaCollisioni().contains(lunaSeconda.getNome())){
+                            pianeta.aggiungiCollisione(lunaSeconda);
+                            lunaSeconda.aggiungiCollisione(pianeta);
+                        }
+                    }
+                }
+            }
+
+        }
+        for(Pianeta pianeta : pianeti) {
+            if(!pianeta.getListaCollisioni().isEmpty()) {
+                System.out.println(pianeta.getNome() + " collide con: " + pianeta.getListaCollisioni());
+            }
+            for(Luna luna : pianeta.getLune()){
+                if(!luna.getListaCollisioni().isEmpty()) {
+                    System.out.println(luna.getNome() + " collide con: " + luna.getListaCollisioni());
+                }
             }
         }
-        return sommaMassa;
-    }
-    public Punto calcolaSommaPesata(){//calcola la somma pesata del sistema cioè la massa che moltplica la posizione di ogni corpo celeste
-        double sommaMassaX = getMassa()*getPosizioneAssoluta().getX();
-        double sommaMassaY = getMassa()*getPosizioneAssoluta().getY();
-        for(Pianeta pianeta: pianeti){
-            sommaMassaX += pianeta.getMassa()*pianeta.getPosizioneAssoluta().getX();
-            sommaMassaY += pianeta.getMassa()*pianeta.getPosizioneAssoluta().getY();
-            for (Luna luna : pianeta.getLune()) {
-                sommaMassaX += luna.getMassa()*luna.getPosizioneAssoluta().getX();
-                sommaMassaY += luna.getMassa()*luna.getPosizioneAssoluta().getY();
-            }
-        }
-        return new Punto(sommaMassaX,sommaMassaY);
-    }
-    public Punto centroMassa(){//calcolo del centro di massa
-        double sommaMassa = calcolaMassa();
-        double centroX = calcolaSommaPesata().getX()/ calcolaMassa();
-        double centroY = calcolaSommaPesata().getY()/ calcolaMassa();
-        return new Punto(centroX,centroY);
     }
 }
