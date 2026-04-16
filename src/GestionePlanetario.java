@@ -104,11 +104,11 @@ public class GestionePlanetario {
         String idPianeta = InputData.readNonEmptyString("id o nome pianeta: ", false);
         String idLuna = InputData.readNonEmptyString("id o nome luna: ", false);
 
-        if(Utility.ricercaPianeta(stella, idPianeta) != null){
+        /*if(Utility.ricercaPianeta(stella, idPianeta) != null){
             stella.getPianeti().remove(Utility.ricercaPianeta(stella, idPianeta));
             System.out.println("******* pianeta eliminato");
         } else {
             System.out.println("******* pianeta non trovato !!");
-        }
+        }*/
     }
 }

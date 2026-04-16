@@ -22,7 +22,7 @@ public class Planetarium {
                 // nuovo corpo celeste, stella hardcoded nel codice se avremo più stelle variabilizzeremo
                 case 1: GestionePlanetario.nuovoCorpoCeleste(stella);
                     break;
-                // todo: rimuovi corpo celeste
+                // rimuovi corpo celeste
                 case 2: GestionePlanetario.rimuoviCorpoCeleste(stella);
                     break;
                 // todo: ricerca corpo celeste
