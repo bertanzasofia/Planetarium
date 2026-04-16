@@ -7,43 +7,43 @@ public class Planetarium {
 
         int scelta;
         do{
-            // todo: stampa menù delle azioni disponibili
-            System.out.println("Azioni possibili sulla mappa galattica:");
-            System.out.println("1-Aggiungi corpo celeste | 2-Rimuovi corpo celeste | 3-Lista sistema planetario | 4-Calcola centro di massa | 5-Calcola rotta | 6-Verifica collisioni | 7-Ricerca corpo celeste | 0-Esci");
-            scelta = InputData.readIntegerBetween("\n******* scegliere un'opzione: ", 0,7);
+            System.out.println("\n******* Azioni possibili sulla mappa galattica:");
+            System.out.println("1 -Aggiungi corpo celeste");
+            System.out.println("2 -Rimuovi corpo celeste");
+            System.out.println("3 -Ricerca corpo celeste");
+            System.out.println("4 -Visualizza sistema");
+            System.out.println("5 -Calcola centro di massa");
+            System.out.println("6 -Calcola rotta");
+            System.out.println("7 -Verifica collisioni");
+            System.out.println("0 -Uscita");
+            scelta = InputData.readInteger("\n******* scegliere un'opzione: ");
 
             switch (scelta){
-                case 1: // scelta per aggiungere un corpo celeste
-                    int sceltaCorpo = InputData.readIntegerBetween("Cosa vuoi aggiungere? 1- Pianeta 2- Luna", 1, 2);
-                    switch (sceltaCorpo) {
-                        case 1: // aggiungi pianeta
-                            GestionePlanetario.aggiungiPianeta(stella); //stella hardcoded nel codice; se avremo più stelle variabilizzeremo
-                            break;
-                        case 2: // aggiungi luna
-                            GestionePlanetario.aggiungiLuna(stella);
-                            break;
-                    }
+                // nuovo corpo celeste, stella hardcoded nel codice se avremo più stelle variabilizzeremo
+                case 1: GestionePlanetario.nuovoCorpoCeleste(stella);
                     break;
-                case 2: // rimuovi Corpo Celeste
-
+                // todo: rimuovi corpo celeste
+                case 2: GestionePlanetario.rimuoviCorpoCeleste(stella);
                     break;
-                case 3: // toString Sistema (lista corpi celesti)
-                    Utility.listaSistema(stella);
+                // todo: ricerca corpo celeste
+                // (se cerco luna identificare il pianeta + stampa info corpo cercato)
+                case 3:
                     break;
-                case 4: // calcola Centro di massa
+                // stampo intero sistema
+                case 4: Utility.listaSistema(stella);
                     break;
-                case 5: // calcola distanza / percorso (rotta)
+                // todo: calcolo centro di massa
+                case 5:
                     break;
-                case 6: // verifica collisioni
-                    Collisioni.detectCollisioni(stella);
+                // todo: calcolo delle rotte
+                case 6:
                     break;
-                case 7: // cerca Corpo Celeste (se cerco luna identificare il pianeta + stampa info corpo cercato)
+                // verifica eventuali collisioni
+                case 7: Collisioni.detectCollisioni(stella);
                     break;
-                case 0:
-                    System.out.println("\n******* grazie per aver usato il nostro sistema, ciao ciao ******* ");
+                case 0: System.out.println("******* grazie per aver usato il nostro sistema, ciao ciao ******* ");
                     break;
-                default:
-                    System.out.println("scelta non disponibile !! \n");
+                default: System.out.println("******* scelta non disponibile !!");
                     break;
             }
         } while(scelta != 0);

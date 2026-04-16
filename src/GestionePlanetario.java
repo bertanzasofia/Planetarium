@@ -1,7 +1,7 @@
 import arnaldoLib.InputData;
 /**
- * Classe di tutte le funzioni che modificano il planetario
- * */
+ modifica di Planetarium
+ **/
 
 public class GestionePlanetario {
     public static Stella inizializzaSistemaStellare() {
@@ -11,6 +11,16 @@ public class GestionePlanetario {
         nomeStella = InputData.readNonEmptyString("nome stella: ", false);
         massaStella = InputData.readDouble("massa stella: ");
         return new Stella(nomeStella, massaStella);
+    }
+
+    public static void nuovoCorpoCeleste(Stella stella) {
+        int scelta = InputData.readIntegerBetween("cosa vuoi aggiungere? 1- Pianeta 2- Luna: ", 1, 2);
+        switch (scelta) {
+            case 1: aggiungiPianeta(stella);
+                break;
+            case 2: aggiungiLuna(stella);
+                break;
+        }
     }
 
     public static void aggiungiPianeta(Stella stella) {
@@ -31,10 +41,7 @@ public class GestionePlanetario {
         Pianeta pianeta = new Pianeta(nome, massa, stella, distanza, angolo);
         stella.getPianeti().add(pianeta);
         System.out.printf("%s è stato aggiunto, ID: %s", pianeta.getNome(), pianeta.getCodiceUnivoco());
-    }
-
-    public static void rimuoviPianeta(Stella stella, String idPianeta){
-        stella.getPianeti().remove(Utility.ricercaPianeta(stella, idPianeta));
+        System.out.print("\n");
     }
 
     public static void aggiungiLuna(Stella stella) {
@@ -59,6 +66,7 @@ public class GestionePlanetario {
                 Luna luna = new Luna(nome, massa, stella, distanza, angolo);
                 pianeta.getLune().add(luna);
                 System.out.printf("%s è stata aggiunta a %s, ID: %s", luna.getNome(), pianeta.getNome(), luna.getCodiceUnivoco());
+                System.out.print("\n");
             }
             else {
                 System.out.println("Impossibile trovare il pianeta specificato.");
@@ -66,6 +74,41 @@ public class GestionePlanetario {
         }
         else{
             System.out.println("Si prega di inserire un pianeta prima di continuare.");
+        }
+    }
+
+    public static void rimuoviCorpoCeleste(Stella stella) {
+        int scelta = InputData.readIntegerBetween("cosa vuoi eliminare? 1- Pianeta 2- Luna: ", 1, 2);
+        switch (scelta) {
+            case 1: rimuoviPianeta(stella);
+                break;
+            case 2: rimuoviLuna(stella);
+                break;
+        }
+    }
+
+    public static void rimuoviPianeta(Stella stella){
+        System.out.println("!! l'eliminazione di un pianeta comporta l'eliminazione delle sue lune !!");
+        String idPianeta = InputData.readNonEmptyString("id o nome pianeta: ", false);
+
+        if(Utility.ricercaPianeta(stella, idPianeta) != null){
+            stella.getPianeti().remove(Utility.ricercaPianeta(stella, idPianeta));
+            System.out.println("******* pianeta eliminato");
+        } else {
+            System.out.println("******* pianeta non trovato !!");
+        }
+    }
+
+    public static void rimuoviLuna(Stella stella){
+        System.out.println("!! inserire prima il pianeta attorno cui orbita la luna !!");
+        String idPianeta = InputData.readNonEmptyString("id o nome pianeta: ", false);
+        String idLuna = InputData.readNonEmptyString("id o nome luna: ", false);
+
+        if(Utility.ricercaPianeta(stella, idPianeta) != null){
+            stella.getPianeti().remove(Utility.ricercaPianeta(stella, idPianeta));
+            System.out.println("******* pianeta eliminato");
+        } else {
+            System.out.println("******* pianeta non trovato !!");
         }
     }
 }
