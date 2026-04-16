@@ -16,7 +16,7 @@ public class Planetarium {
             System.out.println("6 -Calcola rotta");
             System.out.println("7 -Verifica collisioni");
             System.out.println("0 -Uscita");
-            scelta = InputData.readInteger("\n******* scegliere un'opzione: ");
+            scelta = InputData.readInteger("\n******* Scegliere un'opzione: ");
 
             switch (scelta){
                 // nuovo corpo celeste, stella hardcoded nel codice se avremo più stelle variabilizzeremo
@@ -35,7 +35,7 @@ public class Planetarium {
                 // todo: calcolo centro di massa
                 case 5:
                     System.out.println("Massa totale del sistema planetario: "+Utility.calcolaMassa(stella));
-                    System.out.println("Valore del Centro di Massa: "+Utility.centroMassa(stella));
+                    System.out.println("Valore del Centro di Massa: "+Utility.centroMassa(stella).getX()+" "+Utility.centroMassa(stella).getY());
                     break;
                 // todo: calcolo delle rotte
                 case 6:
