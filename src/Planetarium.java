@@ -25,14 +25,13 @@ public class Planetarium {
                 // rimuovi corpo celeste
                 case 2: GestionePlanetario.rimuoviCorpoCeleste(stella);
                     break;
-                // todo: ricerca corpo celeste
-                // (se cerco luna identificare il pianeta + stampa info corpo cercato)
-                case 3:
+                // ricerca corpo celeste
+                case 3: Utility.ricercaCorpoCeleste(stella);
                     break;
                 // stampo intero sistema
                 case 4: Utility.listaSistema(stella);
                     break;
-                // todo: calcolo centro di massa
+                // calcolo centro di massa
                 case 5:
                     System.out.println("Massa totale del sistema planetario: "+Utility.calcolaMassa(stella));
                     System.out.println("Valore del Centro di Massa: "+Utility.centroMassa(stella).getX()+" "+Utility.centroMassa(stella).getY());

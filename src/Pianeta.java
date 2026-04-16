@@ -8,7 +8,6 @@ public class Pianeta extends CorpoCeleste {
     private double distanzaRif;
     private double angoloRif;
     private List<Luna> lune;
-    private String nomePianeta;
     private ArrayList<String> listaCollisioni = new ArrayList<>();
 
     public Pianeta(String nome, double massa, CorpoCeleste nodoRif, double distanzaRif, double angoloRif) {
@@ -20,12 +19,6 @@ public class Pianeta extends CorpoCeleste {
         this.distanzaRif = distanzaRif;
         this.angoloRif = angoloRif;
         this.lune = new ArrayList<>();
-        this.nomePianeta = nome;
-    }
-
-    //getters, setters, overrides, etc
-    public String getNomePianeta() {
-        return nomePianeta;
     }
 
     public CorpoCeleste getNodoRif() {
@@ -54,7 +47,6 @@ public class Pianeta extends CorpoCeleste {
 
     @Override
     public String toString() {
-        return "Pianeta:" + super.toString();
-
+        return "Pianeta:" + super.toString() + lune.toString();
     }
 }

@@ -4,7 +4,6 @@ public class Luna extends CorpoCeleste {
     private CorpoCeleste nodoRif;
     private double distanzaRif;
     private double angoloRif;
-    private String nome;
     private ArrayList<String> listaCollisioni = new ArrayList<>();
 
     public Luna(String nome, double massa, CorpoCeleste nodoRif, double distanzaRif, double angoloRif) {
@@ -15,7 +14,6 @@ public class Luna extends CorpoCeleste {
         this.nodoRif = nodoRif;
         this.distanzaRif = distanzaRif;
         this.angoloRif = angoloRif;
-        this.nome = nome;
     }
 
     public ArrayList<String> getListaCollisioni() {
@@ -28,12 +26,12 @@ public class Luna extends CorpoCeleste {
 
     @Override
     public String getNome() {
-        return nome;
+        return super.getNome();
     }
 
     @Override
     public String toString() {
-        return "Luna: " + super.toString();
+        return "Luna: " + super.toString() + nodoRif;
     }
 
     public void aggiungiCollisione(CorpoCeleste corpo){

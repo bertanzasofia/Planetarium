@@ -13,6 +13,30 @@ public class Utility {
         }
     }
 
+    public static void ricercaCorpoCeleste(Stella stella) {
+        int scelta = InputData.readIntegerBetween("cosa vuoi cercare? 1- Pianeta 2- Luna: ", 1, 2);
+        String idCorpo = InputData.readNonEmptyString("inserire id o nome: ", false);
+
+        switch (scelta) {
+            case 1:
+                Pianeta pianeta = Utility.ricercaPianeta(stella, idCorpo);
+                if(pianeta != null){
+                    System.out.println(pianeta);
+                } else {
+                    System.out.println("******* pianeta non trovato !!");
+                }
+                break;
+            case 2:
+                Luna luna = Utility.ricercaLuna(stella, idCorpo);
+                if(luna != null){
+                    System.out.println(luna);
+                } else {
+                    System.out.println("******* luna non trovata !!");
+                }
+                break;
+        }
+    }
+
     public static Pianeta ricercaPianeta(Stella stella, String pianetaCercato){
         //Ricerca pianeta per ID univoco
         for(Pianeta pianeta: stella.getPianeti())

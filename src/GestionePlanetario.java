@@ -9,7 +9,7 @@ public class GestionePlanetario {
         double massaStella;
 
         nomeStella = InputData.readNonEmptyString("Inserisci nome Stella: ", false);
-        massaStella = InputData.readDouble("Inserisci la Massa della Stella:" );
+        massaStella = InputData.readDouble("Inserisci la Massa della Stella: " );
         return new Stella(nomeStella, massaStella);
     }
 
@@ -49,7 +49,6 @@ public class GestionePlanetario {
             String pianetaCercatoString = InputData.readNonEmptyString("Inserisci il Pianeta intorno a cui orbita la Luna (ID o nome): ", false);
             Pianeta pianeta = Utility.ricercaPianeta(stella, pianetaCercatoString);
             if(pianeta!=null) {
-                boolean duplicato = true;
                 boolean lunaDuplicata = true;
                 String nome;
                 do {
@@ -63,7 +62,7 @@ public class GestionePlanetario {
                 double distanza = InputData.readDoubleWithMinimum("Inserisci la distanza dal Pianeta: ", 0);
                 double angolo = InputData.readDouble("Inserisci l'angolo di riferimento: ");
 
-                Luna luna = new Luna(nome, massa, stella, distanza, angolo);
+                Luna luna = new Luna(nome, massa, pianeta, distanza, angolo);
                 pianeta.getLune().add(luna);
                 System.out.printf("%s è stata aggiunta a %s, ID: %s", luna.getNome(), pianeta.getNome(), luna.getCodiceUnivoco());
                 System.out.print("\n");
@@ -104,11 +103,16 @@ public class GestionePlanetario {
         String idPianeta = InputData.readNonEmptyString("id o nome pianeta: ", false);
         String idLuna = InputData.readNonEmptyString("id o nome luna: ", false);
 
-        /*if(Utility.ricercaPianeta(stella, idPianeta) != null){
-            stella.getPianeti().remove(Utility.ricercaPianeta(stella, idPianeta));
-            System.out.println("******* pianeta eliminato");
+        Pianeta pianeta = Utility.ricercaPianeta(stella, idPianeta);
+        if(pianeta != null){
+            if(Utility.ricercaLuna(stella, idLuna) != null){
+                pianeta.getLune().remove(Utility.ricercaLuna(stella, idLuna));
+                System.out.println("******* luna eliminata");
+            } else {
+                System.out.println("******* luna non trovata");
+            }
         } else {
             System.out.println("******* pianeta non trovato !!");
-        }*/
+        }
     }
 }
