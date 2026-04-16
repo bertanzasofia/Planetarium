@@ -54,7 +54,7 @@ public class Pianeta extends CorpoCeleste {
 
     @Override
     public String toString() {
-        return "Pianeta" + super.toString();
+        return "Pianeta:" + super.toString();
 
     }
 }

@@ -34,6 +34,8 @@ public class Planetarium {
                     break;
                 // todo: calcolo centro di massa
                 case 5:
+                    System.out.println("Massa totale del sistema planetario: "+Utility.calcolaMassa(stella));
+                    System.out.println("Valore del Centro di Massa: "+Utility.centroMassa(stella));
                     break;
                 // todo: calcolo delle rotte
                 case 6:
@@ -41,9 +43,9 @@ public class Planetarium {
                 // verifica eventuali collisioni
                 case 7: Collisioni.detectCollisioni(stella);
                     break;
-                case 0: System.out.println("******* grazie per aver usato il nostro sistema, ciao ciao ******* ");
+                case 0: System.out.println("******* Grazie per aver usato il nostro sistema, ciao ciao ******* ");
                     break;
-                default: System.out.println("******* scelta non disponibile !!");
+                default: System.out.println("******* Scelta non disponibile !!");
                     break;
             }
         } while(scelta != 0);

@@ -31,6 +31,6 @@ public abstract class CorpoCeleste {
 
     @Override
     public String toString() {
-        return  nome + "| Massa: " + massa + "| Posizione X: " + posizioneAssoluta.getX() +" Posizione Y: "+ posizioneAssoluta.getY()+ "| Codice id: " + codiceUnivoco;
+        return  nome + "| Massa: " + massa + "kg | Posizione X: " + posizioneAssoluta.getX() +" Posizione Y: "+ posizioneAssoluta.getY()+ "| Codice ID: " + codiceUnivoco;
     }
 }

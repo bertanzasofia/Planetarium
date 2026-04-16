@@ -8,8 +8,8 @@ public class GestionePlanetario {
         String nomeStella;
         double massaStella;
 
-        nomeStella = InputData.readNonEmptyString("nome stella: ", false);
-        massaStella = InputData.readDouble("massa stella: ");
+        nomeStella = InputData.readNonEmptyString("Inserisci nome Stella: ", false);
+        massaStella = InputData.readDouble("Inserisci la Massa della Stella:" );
         return new Stella(nomeStella, massaStella);
     }
 
@@ -27,16 +27,16 @@ public class GestionePlanetario {
         boolean duplicato = true;
         String nome;
         do {
-            nome = InputData.readNonEmptyString("Inserisci nome pianeta: ", false);
+            nome = InputData.readNonEmptyString("Inserisci il nome del Pianeta: ", false);
             duplicato = Utility.esisteQuestoNome(stella, nome);
             if(duplicato){
                 System.out.println("Impossibile aggiungere nomi duplicati. ");
             }
         }while(duplicato);
 
-        double massa = InputData.readDoubleWithMinimum("Inserisci massa: ", 0);
-        double distanza = InputData.readDoubleWithMinimum("Inserisci la distanza dalla stella: ", 0);
-        double angolo = InputData.readDouble("Inserisci l'angolo a cui si trova: ");
+        double massa = InputData.readDoubleWithMinimum("Inserisci Massa: ", 0);
+        double distanza = InputData.readDoubleWithMinimum("Inserisci la distanza dalla Stella: ", 0);
+        double angolo = InputData.readDouble("Inserisci l'angolo di riferimento: ");
 
         Pianeta pianeta = new Pianeta(nome, massa, stella, distanza, angolo);
         stella.getPianeti().add(pianeta);
@@ -46,22 +46,22 @@ public class GestionePlanetario {
 
     public static void aggiungiLuna(Stella stella) {
         if(!stella.getPianeti().isEmpty()) {
-            String pianetaCercatoString = InputData.readNonEmptyString("Inserisci il pianeta intorno a cui orbita la luna (ID o nome): ", false);
+            String pianetaCercatoString = InputData.readNonEmptyString("Inserisci il Pianeta intorno a cui orbita la Luna (ID o nome): ", false);
             Pianeta pianeta = Utility.ricercaPianeta(stella, pianetaCercatoString);
             if(pianeta!=null) {
                 boolean duplicato = true;
                 boolean lunaDuplicata = true;
                 String nome;
                 do {
-                    nome = InputData.readNonEmptyString("Inserisci nome luna: ", false);
+                    nome = InputData.readNonEmptyString("Inserisci il nome della Luna: ", false);
                     lunaDuplicata = Utility.esisteQuestoNome(stella, nome);
                     if (lunaDuplicata) {
                         System.out.println("Impossibile aggiungere nomi duplicati. ");
                     }
                 } while (lunaDuplicata);
-                double massa = InputData.readDoubleWithMinimum("Inserisci massa: ", 0);
-                double distanza = InputData.readDoubleWithMinimum("Inserisci la distanza dal pianeta: ", 0);
-                double angolo = InputData.readDouble("Inserisci l'angolo a cui si trova: ");
+                double massa = InputData.readDoubleWithMinimum("Inserisci la Massa della Luna: ", 0);
+                double distanza = InputData.readDoubleWithMinimum("Inserisci la distanza dal Pianeta: ", 0);
+                double angolo = InputData.readDouble("Inserisci l'angolo di riferimento: ");
 
                 Luna luna = new Luna(nome, massa, stella, distanza, angolo);
                 pianeta.getLune().add(luna);
@@ -69,11 +69,11 @@ public class GestionePlanetario {
                 System.out.print("\n");
             }
             else {
-                System.out.println("Impossibile trovare il pianeta specificato.");
+                System.out.println("Impossibile trovare il Pianeta specificato.");
             }
         }
         else{
-            System.out.println("Si prega di inserire un pianeta prima di continuare.");
+            System.out.println("Si prega di inserire un Pianeta prima di continuare.");
         }
     }
 
