@@ -33,11 +33,12 @@ public class Luna extends CorpoCeleste {
 
     @Override
     public String toString() {
-        return "Luna" + super.toString();
+        return "Luna: " + super.toString();
     }
 
     public void aggiungiCollisione(CorpoCeleste corpo){
         listaCollisioni.add(corpo.getNome());
     }
+
 
 }

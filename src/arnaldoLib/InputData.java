@@ -448,7 +448,7 @@ public final class InputData {
           InputData.ERRORS.get("maximum").formatted(max)
         );
         // @formatter:on
-    } while (isBelowMin);
+    } while (isBelowMin || isAboveMax);
 
     return read;
   }
