@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Planetarium {
     public static ArrayList<CorpoCeleste> sistemaStellare = new ArrayList<>();
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         System.out.println("******* Benvenuto in Planetarium, inserisci la stella di riferimento del sistema per iniziare *******");
         Stella stella = inizializzaSistemaStellare();
 
