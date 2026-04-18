@@ -1,6 +1,11 @@
+package utilityClass;
+
+import strutturaPlanetarium.*;
+
 /**
  * Ricerca collisioni nel sistema solare della stella fornita
- * */
+ **/
+
 public class Collisioni {
     public static void detectCollisioni(Stella stella){
 
@@ -22,35 +27,35 @@ public class Collisioni {
     }
 
     private static void stampaCollisioniPianeta(Pianeta pianeta) {
-        if(!pianeta.getListaCollisioni().isEmpty()) {
-            System.out.println(pianeta.getNome() + " collide con: " + pianeta.getListaCollisioni());
+        if(!pianeta.getCollisioni().isEmpty()) {
+            System.out.println(pianeta.getNome() + " collide con: " + pianeta.getCollisioni());
         }
     }
 
     private static void stampaCollisioniLune(Pianeta pianeta) {
         for(Luna luna : pianeta.getLune()){
-            if(!luna.getListaCollisioni().isEmpty()) {
-                System.out.println(luna.getNome() + " collide con: " + luna.getListaCollisioni());
+            if(!luna.getCollisioni().isEmpty()) {
+                System.out.println(luna.getNome() + " collide con: " + luna.getCollisioni());
             }
         }
     }
 
     private static void verificaCollisionePianetaLuna(Pianeta pianeta, Pianeta pianetaSecondo, Luna lunaSeconda) {
-        if((pianetaSecondo.getDistanzaRif()+ lunaSeconda.getDistanzaRif()> pianeta.getDistanzaRif()) && !pianeta.getLune().contains(lunaSeconda) && !pianeta.getListaCollisioni().contains(lunaSeconda.getNome())){
+        if((pianetaSecondo.getDistanzaRif()+ lunaSeconda.getDistanzaRif()> pianeta.getDistanzaRif()) && !pianeta.getLune().contains(lunaSeconda) && !pianeta.getCollisioni().contains(lunaSeconda.getNome())){
             pianeta.aggiungiCollisione(lunaSeconda);
             lunaSeconda.aggiungiCollisione(pianeta);
         }
     }
 
     private static void verificaCollisioneLune(Pianeta pianeta, Pianeta pianetaSecondo, Luna luna, Luna lunaSeconda) {
-        if((pianeta.getDistanzaRif() - luna.getDistanzaRif() < pianetaSecondo.getDistanzaRif() + lunaSeconda.getDistanzaRif()) && !luna.getListaCollisioni().contains(lunaSeconda.getNome()) && !luna.equals(lunaSeconda) && !pianeta.equals(pianetaSecondo)){
+        if((pianeta.getDistanzaRif() - luna.getDistanzaRif() < pianetaSecondo.getDistanzaRif() + lunaSeconda.getDistanzaRif()) && !luna.getCollisioni().contains(lunaSeconda.getNome()) && !luna.equals(lunaSeconda) && !pianeta.equals(pianetaSecondo)){
             luna.aggiungiCollisione(lunaSeconda);
         }
     }
 
     private static void verificaCollisionePianeti(Pianeta pianeta, Pianeta pianetaSecondo) {
         if(Math.abs(pianeta.getDistanzaRif()- pianetaSecondo.getDistanzaRif())<0.000001 && !pianeta.equals(pianetaSecondo)) {
-            if(!pianeta.getListaCollisioni().contains(pianetaSecondo.getNome())){
+            if(!pianeta.getCollisioni().contains(pianetaSecondo.getNome())){
                 pianeta.aggiungiCollisione(pianetaSecondo);
             }
         }

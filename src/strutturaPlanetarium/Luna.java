@@ -1,27 +1,32 @@
+package strutturaPlanetarium;
+
 import java.util.ArrayList;
 
 public class Luna extends CorpoCeleste {
-    private CorpoCeleste nodoRif;
-    private double distanzaRif;
-    private double angoloRif;
-    private ArrayList<String> listaCollisioni = new ArrayList<>();
+    private final double distanzaRif;
+    private final double angoloRif;
+    private final ArrayList<String> collisioni;
 
     public Luna(String nome, double massa, CorpoCeleste nodoRif, double distanzaRif, double angoloRif) {
         double posX = nodoRif.getPosizioneAssoluta().getX() + distanzaRif * Math.cos(Math.toRadians(angoloRif));
         double posY = nodoRif.getPosizioneAssoluta().getY() + distanzaRif * Math.sin(Math.toRadians(angoloRif));
-        super(nome, massa, posX, posY);
+        super(nome, massa, posX, posY, nodoRif);
 
-        this.nodoRif = nodoRif;
         this.distanzaRif = distanzaRif;
         this.angoloRif = angoloRif;
-    }
-
-    public ArrayList<String> getListaCollisioni() {
-        return listaCollisioni;
+        this.collisioni = new ArrayList<>();
     }
 
     public double getDistanzaRif() {
         return distanzaRif;
+    }
+
+    public ArrayList<String> getCollisioni() {
+        return collisioni;
+    }
+
+    public void aggiungiCollisione(CorpoCeleste corpo){
+        collisioni.add(corpo.getNome());
     }
 
     @Override
@@ -31,12 +36,7 @@ public class Luna extends CorpoCeleste {
 
     @Override
     public String toString() {
-        return "Luna: " + super.toString() + nodoRif;
+        // todo: stampa posizione relativa
+        return "strutturaSistemaStellare.Luna: " + super.toString();
     }
-
-    public void aggiungiCollisione(CorpoCeleste corpo){
-        listaCollisioni.add(corpo.getNome());
-    }
-
-
 }
