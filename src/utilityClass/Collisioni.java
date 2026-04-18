@@ -8,7 +8,7 @@ import strutturaPlanetarium.*;
 
 public class Collisioni {
     public static void detectCollisioni(Stella stella){
-
+        boolean checkCollisioni = false; //Per stampare un feedback all'utente se non ci sono collisioni
         for(Pianeta pianeta : stella.getPianeti()) {
             for(Pianeta pianetaSecondo : stella.getPianeti()) {
                 verificaCollisionePianeti(pianeta, pianetaSecondo);
@@ -16,13 +16,22 @@ public class Collisioni {
                     for(Luna lunaSeconda : pianetaSecondo.getLune()){
                         verificaCollisioneLune(pianeta, pianetaSecondo, luna, lunaSeconda);
                         verificaCollisionePianetaLuna(pianeta, pianetaSecondo, lunaSeconda);
+                        if(!luna.getCollisioni().isEmpty()){
+                            checkCollisioni = true;
+                        }
                     }
+                }
+                if(!pianeta.getCollisioni().isEmpty()){
+                    checkCollisioni = true;
                 }
             }
         }
         for(Pianeta pianeta : stella.getPianeti()) {
             stampaCollisioniPianeta(pianeta);
             stampaCollisioniLune(pianeta);
+            if(!checkCollisioni){
+                System.out.println("Non ci sono corpi in collisione.");
+            }
         }
     }
 

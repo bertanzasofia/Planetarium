@@ -8,7 +8,7 @@ import java.util.ArrayList;
  **/
 
 public class Utility {
-    public static CorpoCeleste cercaCorpoCeleste(ArrayList<CorpoCeleste> sistemaStellare, String idCorpo) {
+    public static CorpoCeleste ricercaCorpoCeleste(ArrayList<CorpoCeleste> sistemaStellare, String idCorpo) {
         for (CorpoCeleste corpo : sistemaStellare) {
             if (corpo.getNome().equalsIgnoreCase(idCorpo) || corpo.getCodiceUnivoco().equals(idCorpo)) {
                 return corpo;
