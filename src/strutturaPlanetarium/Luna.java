@@ -37,6 +37,6 @@ public class Luna extends CorpoCeleste {
     @Override
     public String toString() {
         // todo: stampa posizione relativa
-        return "strutturaSistemaStellare.Luna: " + super.toString();
+        return "Luna: " + super.toString();
     }
 }

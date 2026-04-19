@@ -1,5 +1,6 @@
 package utilityClass;
 
+import arnaldoLib.InputData;
 import strutturaPlanetarium.*;
 import java.util.ArrayList;
 
@@ -21,10 +22,9 @@ public class Utility {
     // todo: magari possiamo definire il toString in stella per questa funzione ??
     //todo: la stella stampa solo il nome, manca la massa
     public static void stampaSistemaStellare(Stella stella){
-        System.out.println("\u001B[32m");
-        System.out.println("Stella: " + stella.getNome());
+        printColored("Stella: ", 32, stella.getNome());
         for(Pianeta pianeta : stella.getPianeti()){
-            System.out.println(pianeta.toString());
+            printColored(pianeta.toString(), 32);
             // todo: perchè scorri lune ??
             for(Luna luna : pianeta.getLune()){
                 System.out.println(pianeta.getLune().toString());
@@ -33,7 +33,7 @@ public class Utility {
         System.out.println("\u001B[0m");
     }
 
-    public static Pianeta ricercaPianeta(Stella stella, String pianetaCercato){
+    public static Pianeta ricercaPianeta(Stella stella, String pianetaCercato){//todo: mi fa strano non usiamo più questa funzione ma se funziona tutto la togliamo
         for(Pianeta pianeta: stella.getPianeti())
         {
             if(pianeta.getCodiceUnivoco().equalsIgnoreCase(pianetaCercato) || pianeta.getNome().equalsIgnoreCase(pianetaCercato))
@@ -142,6 +142,30 @@ public class Utility {
     }
 
     public static void printColored(String testo, int colore, String args){
-        System.out.println("\u001B["+colore+"m "+testo+" \u001B[0m"+args);
+        System.out.println("\u001B["+colore+"m "+testo+args+" \u001B[0m");
+    }
+
+    public static void printColored(String testo, int colore, CorpoCeleste args){
+        System.out.println("\u001B["+colore+"m "+testo+args+" \u001B[0m");
+    }
+
+    public static void printColored(String testo, int colore, double args){
+        System.out.println("\u001B["+colore+"m "+testo+args+" \u001B[0m");
+    }
+
+    public static String inputStringColored(String messaggio, int colore) {
+        return InputData.readNonEmptyString("\u001B["+colore+"m "+messaggio+"\u001B[0m", false);
+    }
+
+    public static int inputIntColored(String messaggio, int colore) {
+        return InputData.readIntegerBetween("\u001B["+colore+"m "+messaggio+"\u001B[0m", 0, 7);
+    }
+
+    public static double inputDoubleColored(String messaggio, int colore) {
+        return InputData.readDouble("\u001B["+colore+"m "+messaggio+"\u001B[0m");
+    }
+
+    public static double inputDoubleColoredWithMin(String messaggio, int colore, double min) {
+        return InputData.readDoubleWithMinimum("\u001B["+colore+"m "+messaggio+"\u001B[0m", min);
     }
 }

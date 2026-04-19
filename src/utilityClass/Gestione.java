@@ -10,13 +10,8 @@ import java.util.ArrayList;
 
 public class Gestione {
     public static Stella inizializzaSistemaStellare(ArrayList<CorpoCeleste> sistemaStellare) {
-        String nomeStella;
-        double massaStella;
-
-        System.out.print("\u001B[34m");
-        nomeStella = InputData.readNonEmptyString("Nome stella: ", false);
-        massaStella = InputData.readDouble("Massa stella: " );
-        System.out.print("\u001B[0m");
+        String nomeStella = Utility.inputStringColored("Nome stella: ", 34);
+        double massaStella = Utility.inputDoubleColored("Massa stella: ", 34);
 
         Stella stella = new Stella(nomeStella, massaStella);
         sistemaStellare.add(stella);
@@ -24,13 +19,10 @@ public class Gestione {
     }
 
     public static void aggiungiPianeta(ArrayList<CorpoCeleste> sistemaStellare, Stella stella) {
-        System.out.println("\u001B[34m");
-        String nome = chiediNomeUnivoco(sistemaStellare, "Inserisci il nome del Pianeta: ");
-
-        double massa = InputData.readDoubleWithMinimum("Inserisci Massa: ", 0);
-        double distanza = InputData.readDoubleWithMinimum("Inserisci la distanza dalla Stella: ", 0);
-        double angolo = InputData.readDouble("Inserisci l'angolo di riferimento: ");
-        System.out.println("\u001B[0m");
+        String nome = Utility.inputStringColored("Inserisci il nome del pianeta: ", 34);
+        double massa = Utility.inputDoubleColoredWithMin("Inserisci Massa: ", 34, 0);
+        double distanza = Utility.inputDoubleColoredWithMin("Inserisci Distanza dalla stella: ", 34, 0);
+        double angolo = Utility.inputDoubleColored("Inserisci Angolo di riferimento: ", 34);
 
         Pianeta pianeta = new Pianeta(nome, massa, stella, distanza, angolo);
         stella.aggiungiPianeta(pianeta);
@@ -43,21 +35,18 @@ public class Gestione {
 
     public static void aggiungiLuna(ArrayList<CorpoCeleste> sistemaStellare, Stella stella) {
         if(!stella.getPianeti().isEmpty()) {
-            System.out.println("\u001B[34m");
-            String pianetaCercatoString = InputData.readNonEmptyString("Inserisci il Pianeta intorno a cui orbita la Luna (ID o nome): ", false);
-            System.out.println("\u001B[0m");
+            String pianetaCercatoString = Utility.inputStringColored("Inserisci il nome del pianeta attorno a cui orbita la luna: ", 34);
             Pianeta pianeta = (Pianeta) Utility.ricercaCorpoCeleste(sistemaStellare, pianetaCercatoString);
             if(pianeta!=null) {
-                System.out.println("\u001B[34m");
-                String nome = chiediNomeUnivoco(sistemaStellare, "Inserisci il nome della Luna: ");
-                double massa = InputData.readDoubleWithMinimum("Inserisci la Massa della Luna: ", 0);
-                double distanza = InputData.readDoubleWithMinimum("Inserisci la distanza dal Pianeta: ", 0);
-                double angolo = InputData.readDouble("Inserisci l'angolo di riferimento: ");
-                System.out.println("\u001B[0m");
+                String nome = Utility.inputStringColored("Inserisci il nome della luna: ", 34);
+                double massa = Utility.inputDoubleColoredWithMin("Inserisci Massa: ", 34, 0);
+                double distanza = Utility.inputDoubleColoredWithMin("Inserisci Distanza dal pianeta: ", 34, 0);
+                double angolo = Utility.inputDoubleColored("Inserisci Angolo di riferimento dal pianeta: ", 34);
 
                 Luna luna = new Luna(nome, massa, pianeta, distanza, angolo);
                 pianeta.aggiungiLuna(luna);
                 sistemaStellare.add(luna);
+
                 System.out.println("\u001B[32m");
                 System.out.printf("%s è stata aggiunta a %s, ID: %s \n", luna.getNome(), pianeta.getNome(), luna.getCodiceUnivoco());
                 System.out.println("\u001B[0m");
@@ -86,7 +75,7 @@ public class Gestione {
 
     public static void rimuoviPianeta(ArrayList<CorpoCeleste> sistemaStellare, Stella stella, String idPianeta){
         Pianeta pianeta = (Pianeta) Utility.ricercaCorpoCeleste(sistemaStellare, idPianeta);
-
+        //todo: se la lista di pianeti e lune è vuota non stare a richiedere un input, restituire solo messaggio. Idem se 0 lune ma >1 pianeta per voce 2 dell'elenco
         if(pianeta != null){
             stella.rimuoviPianeta(pianeta);
             sistemaStellare.remove(pianeta);

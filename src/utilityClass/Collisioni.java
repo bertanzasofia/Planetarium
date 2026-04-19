@@ -28,12 +28,12 @@ public class Collisioni {
             }
         }
         for(Pianeta pianeta : stella.getPianeti()) {
-            if(!checkCollisioni){
-                Utility.printColored("Non ci sono corpi in rotta di collisione", 32);
-            }else{
-                Utility.printColored("Collisioni presenti:", 31);
+            Utility.printColored("Collisioni presenti:", 31);
+            if(checkCollisioni){
                 stampaCollisioniPianeta(pianeta);
                 stampaCollisioniLune(pianeta);
+            }else{
+                Utility.printColored("Non ci sono corpi in rotta di collisione", 32);
             }
         }
     }
