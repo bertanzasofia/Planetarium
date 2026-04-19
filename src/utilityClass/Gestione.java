@@ -9,17 +9,14 @@ import java.util.ArrayList;
  **/
 
 public class Gestione {
-
     public static Stella inizializzaSistemaStellare(ArrayList<CorpoCeleste> sistemaStellare) {
         String nomeStella;
         double massaStella;
 
-        Utility.printColored("**Benvenuto nella mappa galattica**", 34);
-
-        System.out.println("\u001B[34m");
+        System.out.print("\u001B[34m");
         nomeStella = InputData.readNonEmptyString("Nome stella: ", false);
         massaStella = InputData.readDouble("Massa stella: " );
-        System.out.println("\u001B[0m");
+        System.out.print("\u001B[0m");
 
         Stella stella = new Stella(nomeStella, massaStella);
         sistemaStellare.add(stella);
