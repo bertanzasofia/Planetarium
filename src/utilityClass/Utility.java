@@ -8,8 +8,9 @@ import java.util.ArrayList;
  **/
 
 public class Utility {
-    public static CorpoCeleste cercaCorpoCeleste(ArrayList<? extends CorpoCeleste> sistemaStellare, String idCorpo) {
+    public static CorpoCeleste ricercaCorpoCeleste(ArrayList<CorpoCeleste> sistemaStellare, String idCorpo) {
         for (CorpoCeleste corpo : sistemaStellare) {
+            // OR necessario se qualcuno prova a usare un ID già esistente come nome
             if (corpo.getNome().equalsIgnoreCase(idCorpo) || corpo.getCodiceUnivoco().equalsIgnoreCase(idCorpo)) {
                 return corpo;
             }
@@ -17,9 +18,10 @@ public class Utility {
         return null;
     }
 
-    // todo: magari possiamo definire il toString in stella per questa funzione
-    // todo: la stella stampa solo il nome, manca la massa
+    // todo: magari possiamo definire il toString in stella per questa funzione ??
+    //todo: la stella stampa solo il nome, manca la massa
     public static void stampaSistemaStellare(Stella stella){
+        System.out.println("\u001B[32m");
         System.out.println("Stella: " + stella.getNome());
         for(Pianeta pianeta : stella.getPianeti()){
             System.out.println(pianeta.toString());
@@ -28,11 +30,23 @@ public class Utility {
                 System.out.println(pianeta.getLune().toString());
             }
         }
+        System.out.println("\u001B[0m");
+    }
+
+    public static Pianeta ricercaPianeta(Stella stella, String pianetaCercato){
+        for(Pianeta pianeta: stella.getPianeti())
+        {
+            if(pianeta.getCodiceUnivoco().equalsIgnoreCase(pianetaCercato) || pianeta.getNome().equalsIgnoreCase(pianetaCercato))
+            {
+                return pianeta;
+            }
+        }
+        return null;
     }
 
     public static boolean esisteQuestoNome(ArrayList<CorpoCeleste> sistemaStellare, String nome) {
         boolean duplicato = true;
-            CorpoCeleste trovato = cercaCorpoCeleste(sistemaStellare, nome);
+            CorpoCeleste trovato = ricercaCorpoCeleste(sistemaStellare, nome);
                 if (trovato==null) {
                     duplicato = false;
                 }
@@ -115,6 +129,14 @@ public class Utility {
         return String.valueOf(distanza);
     }
 
+    /**
+     * @param colore numero intero associato al colore (30->37)
+     *               31 errori e eliminazioni
+     *               32 output richieste
+     *               33 avvisi
+     *               34 input utente
+     *               35 per bellezza
+     * */
     public static void printColored(String testo, int colore){
         System.out.println("\u001B["+colore+"m "+testo+" \u001B[0m");
     }

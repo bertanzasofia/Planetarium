@@ -46,7 +46,7 @@ public class Gestione {
             System.out.println("\u001B[34m");
             String pianetaCercatoString = InputData.readNonEmptyString("Inserisci il Pianeta intorno a cui orbita la Luna (ID o nome): ", false);
             System.out.println("\u001B[0m");
-            Pianeta pianeta = (Pianeta) Utility.cercaCorpoCeleste(stella.getPianeti(), pianetaCercatoString);
+            Pianeta pianeta = (Pianeta) Utility.ricercaCorpoCeleste(sistemaStellare, pianetaCercatoString);
             if(pianeta!=null) {
                 System.out.println("\u001B[34m");
                 String nome = chiediNomeUnivoco(sistemaStellare, "Inserisci il nome della Luna: ");
@@ -85,7 +85,7 @@ public class Gestione {
     }
 
     public static void rimuoviPianeta(ArrayList<CorpoCeleste> sistemaStellare, Stella stella, String idPianeta){
-        Pianeta pianeta = (Pianeta) Utility.cercaCorpoCeleste(sistemaStellare, idPianeta);
+        Pianeta pianeta = (Pianeta) Utility.ricercaCorpoCeleste(sistemaStellare, idPianeta);
 
         if(pianeta != null){
             stella.rimuoviPianeta(pianeta);
@@ -97,8 +97,8 @@ public class Gestione {
     }
 
     public static void rimuoviLuna(ArrayList<CorpoCeleste> sistemaStellare, String idPianeta, String idLuna){
-        Pianeta pianeta = (Pianeta) Utility.cercaCorpoCeleste(sistemaStellare, idPianeta);
-        Luna luna = (Luna) Utility.cercaCorpoCeleste(sistemaStellare, idLuna);
+        Pianeta pianeta = (Pianeta) Utility.ricercaCorpoCeleste(sistemaStellare, idPianeta);
+        Luna luna = (Luna) Utility.ricercaCorpoCeleste(sistemaStellare, idLuna);
 
         if(pianeta != null){
             if(luna != null){
