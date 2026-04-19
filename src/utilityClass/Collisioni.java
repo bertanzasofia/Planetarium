@@ -1,5 +1,6 @@
 package utilityClass;
 
+import jdk.jshell.execution.Util;
 import strutturaPlanetarium.*;
 
 /**
@@ -27,10 +28,12 @@ public class Collisioni {
             }
         }
         for(Pianeta pianeta : stella.getPianeti()) {
-            stampaCollisioniPianeta(pianeta);
-            stampaCollisioniLune(pianeta);
             if(!checkCollisioni){
-                System.out.println("Non ci sono corpi in collisione.");
+                Utility.printColored("Non ci sono corpi in rotta di collisione", 32);
+            }else{
+                Utility.printColored("Collisioni presenti:", 31);
+                stampaCollisioniPianeta(pianeta);
+                stampaCollisioniLune(pianeta);
             }
         }
     }

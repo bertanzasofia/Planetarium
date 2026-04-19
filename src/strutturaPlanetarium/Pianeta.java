@@ -46,6 +46,6 @@ public class Pianeta extends CorpoCeleste {
     @Override
     public String toString() {
         // todo: stampa posizione relativa e lune
-        return "strutturaSistemaStellare.Pianeta:" + super.toString();
+        return "Pianeta: " + super.toString();
     }
 }

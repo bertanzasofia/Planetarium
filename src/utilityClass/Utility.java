@@ -10,7 +10,8 @@ import java.util.ArrayList;
 public class Utility {
     public static CorpoCeleste ricercaCorpoCeleste(ArrayList<CorpoCeleste> sistemaStellare, String idCorpo) {
         for (CorpoCeleste corpo : sistemaStellare) {
-            if (corpo.getNome().equalsIgnoreCase(idCorpo) || corpo.getCodiceUnivoco().equals(idCorpo)) {
+            // OR necessario se qualcuno prova a usare un ID già esistente come nome
+            if (corpo.getNome().equalsIgnoreCase(idCorpo) || corpo.getCodiceUnivoco().equalsIgnoreCase(idCorpo)) {
                 return corpo;
             }
         }
@@ -18,8 +19,9 @@ public class Utility {
     }
 
     // todo: magari possiamo definire il toString in stella per questa funzione ??
+    //todo: la stella stampa solo il nome, manca la massa
     public static void stampaSistemaStellare(Stella stella){
-        System.out.println("strutturaSistemaStellare.Stella: " + stella.getNome());
+        System.out.println("Stella: " + stella.getNome());
         for(Pianeta pianeta : stella.getPianeti()){
             System.out.println(pianeta.toString());
             // todo: perchè scorri lune ??
@@ -30,7 +32,6 @@ public class Utility {
     }
 
     public static Pianeta ricercaPianeta(Stella stella, String pianetaCercato){
-        //Ricerca pianeta per ID univoco
         for(Pianeta pianeta: stella.getPianeti())
         {
             if(pianeta.getCodiceUnivoco().equalsIgnoreCase(pianetaCercato) || pianeta.getNome().equalsIgnoreCase(pianetaCercato))
@@ -42,7 +43,6 @@ public class Utility {
     }
 
     public static Luna ricercaLuna(Stella stella, String lunaCercata){
-        //Ricerca luna per ID univoco
         for(Pianeta pianeta: stella.getPianeti()) {
             for (Luna luna : pianeta.getLune()) {
                 if (luna.getCodiceUnivoco().equalsIgnoreCase(lunaCercata) || luna.getNome().equalsIgnoreCase(lunaCercata)) {
@@ -53,20 +53,12 @@ public class Utility {
         return null;
     }
 
-    public static boolean esisteQuestoNome(Stella stella, String nome) {
+    public static boolean esisteQuestoNome(ArrayList<CorpoCeleste> sistemaStellare, Stella stella, String nome) {
         boolean duplicato = true;
-        if(stella.getPianeti().isEmpty()) {
-            return false;
-        }
-        else{
-            // todo: se non vuoi fare la doppia ricerca puoi usare cercaCorpoCeleste su tutto il sistema
-            for (Pianeta pianeta : stella.getPianeti()) {
-                if (ricercaPianeta(stella, nome) == null && ricercaLuna(stella, nome) == null) {
+            CorpoCeleste trovato = ricercaCorpoCeleste(sistemaStellare, nome);
+                if (trovato==null) {
                     duplicato = false;
                 }
-            }
-        }
-
         return duplicato;
     }
 
@@ -144,5 +136,13 @@ public class Utility {
         }
 
         return String.valueOf(distanza);
+    }
+
+    public static void printColored(String testo, int colore){
+        System.out.println("\u001B["+colore+"m "+testo+" \u001B[0m");
+    }
+
+    public static void printColored(String testo, int colore, String args){
+        System.out.println("\u001B["+colore+"m "+testo+" \u001B[0m"+args);
     }
 }
