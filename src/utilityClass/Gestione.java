@@ -52,7 +52,7 @@ public class Gestione {
                 System.out.println("\u001B[0m");
             }
             else {
-                Utility.printColored("Impossibile trovare il pianeta specificato", 31);
+                Utility.printColored("***Impossibile trovare il pianeta specificato :((", 31);
             }
         }
         else{
@@ -67,7 +67,7 @@ public class Gestione {
             nome = InputData.readNonEmptyString(message, false);
             duplicato = Utility.esisteQuestoNome(sistemaStellare, nome);
             if (duplicato) {
-                Utility.printColored("Impossibile aggiungere nomi duplicati", 33);
+                Utility.printColored("***Impossibile aggiungere nomi duplicati :(((", 33);
             }
         } while (duplicato);
         return nome;

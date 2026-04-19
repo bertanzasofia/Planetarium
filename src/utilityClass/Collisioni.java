@@ -33,7 +33,7 @@ public class Collisioni {
                 stampaCollisioniPianeta(pianeta);
                 stampaCollisioniLune(pianeta);
             }else{
-                Utility.printColored("Non ci sono corpi in rotta di collisione", 32);
+                Utility.printColored("Non ci sono corpi in rotta di collisione :)", 32);
             }
         }
     }

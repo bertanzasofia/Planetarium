@@ -92,7 +92,7 @@ public class MenuUtente {
             Utility.printColored("", 32, corpoCeleste);
             //System.out.println(corpoCeleste); //todo: posizione appare come link(?). da fixare?
         } else {
-            Utility.printColored("Corpo celeste non trovato!", 31);
+            Utility.printColored("Corpo celeste non trovato!!! :(", 31);
         }
     }
 
@@ -114,7 +114,7 @@ public class MenuUtente {
             Utility.printColored("\n Rotta: ", 32, path);
             Utility.printColored("\n Distanza da percorrere: ", 32, distanza);
         } else {
-            Utility.printColored("Corpi celesti non trovati!", 31);
+            Utility.printColored("Corpi celesti non trovati!!! :(", 31);
         }
     }
 }
