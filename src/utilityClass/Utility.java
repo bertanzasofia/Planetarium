@@ -8,9 +8,8 @@ import java.util.ArrayList;
  **/
 
 public class Utility {
-    public static CorpoCeleste ricercaCorpoCeleste(ArrayList<CorpoCeleste> sistemaStellare, String idCorpo) {
+    public static CorpoCeleste cercaCorpoCeleste(ArrayList<? extends CorpoCeleste> sistemaStellare, String idCorpo) {
         for (CorpoCeleste corpo : sistemaStellare) {
-            // OR necessario se qualcuno prova a usare un ID già esistente come nome
             if (corpo.getNome().equalsIgnoreCase(idCorpo) || corpo.getCodiceUnivoco().equalsIgnoreCase(idCorpo)) {
                 return corpo;
             }
@@ -18,8 +17,8 @@ public class Utility {
         return null;
     }
 
-    // todo: magari possiamo definire il toString in stella per questa funzione ??
-    //todo: la stella stampa solo il nome, manca la massa
+    // todo: magari possiamo definire il toString in stella per questa funzione
+    // todo: la stella stampa solo il nome, manca la massa
     public static void stampaSistemaStellare(Stella stella){
         System.out.println("Stella: " + stella.getNome());
         for(Pianeta pianeta : stella.getPianeti()){
@@ -31,31 +30,9 @@ public class Utility {
         }
     }
 
-    public static Pianeta ricercaPianeta(Stella stella, String pianetaCercato){
-        for(Pianeta pianeta: stella.getPianeti())
-        {
-            if(pianeta.getCodiceUnivoco().equalsIgnoreCase(pianetaCercato) || pianeta.getNome().equalsIgnoreCase(pianetaCercato))
-            {
-                return pianeta;
-            }
-        }
-        return null;
-    }
-
-    public static Luna ricercaLuna(Stella stella, String lunaCercata){
-        for(Pianeta pianeta: stella.getPianeti()) {
-            for (Luna luna : pianeta.getLune()) {
-                if (luna.getCodiceUnivoco().equalsIgnoreCase(lunaCercata) || luna.getNome().equalsIgnoreCase(lunaCercata)) {
-                    return luna;
-                }
-            }
-        }
-        return null;
-    }
-
-    public static boolean esisteQuestoNome(ArrayList<CorpoCeleste> sistemaStellare, Stella stella, String nome) {
+    public static boolean esisteQuestoNome(ArrayList<CorpoCeleste> sistemaStellare, String nome) {
         boolean duplicato = true;
-            CorpoCeleste trovato = ricercaCorpoCeleste(sistemaStellare, nome);
+            CorpoCeleste trovato = cercaCorpoCeleste(sistemaStellare, nome);
                 if (trovato==null) {
                     duplicato = false;
                 }

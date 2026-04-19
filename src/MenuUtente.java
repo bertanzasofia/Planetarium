@@ -80,14 +80,14 @@ public class MenuUtente {
                 String idLuna = InputData.readNonEmptyString("Luna da eliminare (id o nome): ", false);
 
                 Gestione.rimuoviLuna(sistemaStellare, idPadre, idLuna);
-                sistemaStellare.remove(Utility.ricercaCorpoCeleste(sistemaStellare, idLuna));
+                sistemaStellare.remove(Utility.cercaCorpoCeleste(sistemaStellare, idLuna));
                 break;
         }
     }
 
     public static void ricercaCorpoCeleste(ArrayList<CorpoCeleste> sistemaStellare) {
         String idCorpo = InputData.readNonEmptyString("Corpo celeste cercato (id o nome): ", false);
-        CorpoCeleste corpoCeleste = Utility.ricercaCorpoCeleste(sistemaStellare, idCorpo);
+        CorpoCeleste corpoCeleste = Utility.cercaCorpoCeleste(sistemaStellare, idCorpo);
 
         if(corpoCeleste != null){
             System.out.println(corpoCeleste);
@@ -103,10 +103,10 @@ public class MenuUtente {
 
     public static void calcoloRotta() {
         String idPartenza = InputData.readNonEmptyString("Corpo celeste di partenza (id o nome): ", false);
-        CorpoCeleste partenza = Utility.ricercaCorpoCeleste(Planetarium.sistemaStellare, idPartenza);
+        CorpoCeleste partenza = Utility.cercaCorpoCeleste(Planetarium.sistemaStellare, idPartenza);
 
         String idArrivo = InputData.readNonEmptyString("Corpo celeste di arrivo (id o nome): ", false);
-        CorpoCeleste destinazione = Utility.ricercaCorpoCeleste(Planetarium.sistemaStellare, idArrivo);
+        CorpoCeleste destinazione = Utility.cercaCorpoCeleste(Planetarium.sistemaStellare, idArrivo);
 
         if(partenza != null && destinazione != null){
             String path = Utility.restituisciPath(Utility.calcolaRotta(partenza, destinazione));
