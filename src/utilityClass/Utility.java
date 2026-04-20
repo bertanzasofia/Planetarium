@@ -51,6 +51,14 @@ public class Utility {
         return false;
     }
 
+    public static int contaLune(Stella stella){
+        int conto = 0;
+        for(Pianeta pianeta: stella.getPianeti()){
+           conto = conto + pianeta.getLune().size();
+        }
+        return conto;
+    }
+
     // calcola la massa totale del sistema planetario
     public static double calcolaMassa(Stella stella){
         double sommaMassa = stella.getMassa();

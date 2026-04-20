@@ -85,4 +85,8 @@ public class Costanti {
     public static final String KHIRT = "Khirt";
     public static final String MATTIA = "Mattia";
     public static final int COLORE_SPECIALE = 37;
+    public static final String ERRORE_MAX_PIANETI = "Impossibile aggiungere più di 26000 pianeti!";
+    public static final String ERRORE_MAX_LUNE = "Impossibile aggiungere più di 5000 lune!";
+    public static final int MAX_PIANETI = 26000;
+    public static final int MAX_LUNE = 5000;
 }
