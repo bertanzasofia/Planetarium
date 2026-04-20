@@ -37,7 +37,7 @@ public class MenuUtente {
                     break;
                 case 7: Collisioni.detectCollisioni(stella);
                     break;
-                case 0: Utility.printColored(GRAZIE_CIAO, COLORE_BELLEZZA);
+                case 0: saluti();
                     break;
                 default: Utility.printColored(SCELTA_NON_DISPONIBILE, COLORE_ERRORE);
             }
@@ -120,5 +120,12 @@ public class MenuUtente {
         } else {
             Utility.printColored(CORPO_NON_TROVATO, COLORE_ERRORE);
         }
+    }
+
+    public static void saluti(){
+        Utility.printColored(GRAZIE_E_CIAO_DA, COLORE_SPECIALE);
+        Utility.printColored(SOFIA, COLORE_ERRORE);
+        Utility.printColored(KHIRT, COLORE_AVVISO);
+        Utility.printColored(MATTIA, COLORE_OUTPUT_RICHIESTE);
     }
 }

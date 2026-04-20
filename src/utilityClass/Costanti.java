@@ -15,7 +15,6 @@ public class Costanti {
     public static final String SCEGLI_OPZIONE = "\n******* scegliere un'opzione: ";
     public static final int COLORE_INPUT = 34;
     public static final String TESTO_VUOTO = "";
-    public static final String GRAZIE_CIAO = "******* Grazie per aver usato il nostro sistema, ciao ciao ******* ";
     public static final String SCELTA_NON_DISPONIBILE = "******* Scelta non disponibile!!";
     public static final int COLORE_ERRORE = 31;
     public static final String COSA_AGGIUNGERE = "Cosa vuoi aggiungere? 1-Pianeta 2-Luna: ";
@@ -81,4 +80,9 @@ public class Costanti {
     public static final String PIANETA = "pianeta";
     public static final String LUNA = "luna";
     public static final String KM = " km";
+    public static final String GRAZIE_E_CIAO_DA = "******* Grazie per aver usato il nostro sistema, ciao da: ";
+    public static final String SOFIA = "Sofia";
+    public static final String KHIRT = "Khirt";
+    public static final String MATTIA = "Mattia";
+    public static final int COLORE_SPECIALE = 37;
 }
