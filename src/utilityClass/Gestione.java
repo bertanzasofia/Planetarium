@@ -20,15 +20,14 @@ public class Gestione {
     }
 
     public static void aggiungiPianeta(ArrayList<CorpoCeleste> sistemaStellare, Stella stella) {
-        String nome = Utility.chiediNomeUnivoco(sistemaStellare, INSERISCI_NOME_DEL_PIANETA);
-        double massa = Utility.inputDoubleColoredWithMin(INSERISCI_MASSA, COLORE_INPUT, MIN);
-        double distanza = Utility.inputDoubleColoredWithMin(INSERISCI_DISTANZA, COLORE_INPUT, MIN);
-        double angolo = Utility.inputDoubleColored(INSERISCI_ANGOLO, COLORE_INPUT);
-
         if(stella.getPianeti().size()>= MAX_PIANETI)
         {
             Utility.printColored(ERRORE_MAX_PIANETI, COLORE_ERRORE);
         }else{
+            String nome = Utility.chiediNomeUnivoco(sistemaStellare, INSERISCI_NOME_DEL_PIANETA);
+            double massa = Utility.inputDoubleColoredWithMin(INSERISCI_MASSA, COLORE_INPUT, MIN);
+            double distanza = Utility.inputDoubleColoredWithMin(INSERISCI_DISTANZA, COLORE_INPUT, MIN);
+            double angolo = Utility.inputDoubleColored(INSERISCI_ANGOLO, COLORE_INPUT);
             Pianeta pianeta = new Pianeta(nome, massa, stella, distanza, angolo);
             stella.aggiungiPianeta(pianeta);
             sistemaStellare.add(pianeta);
