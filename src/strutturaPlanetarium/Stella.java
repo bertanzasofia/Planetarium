@@ -1,12 +1,15 @@
 package strutturaPlanetarium;
 
+import utilityClass.Costanti;
+import static utilityClass.Costanti.*;
 import java.util.ArrayList;
 
 public class Stella extends CorpoCeleste {
+
     private final ArrayList<Pianeta> pianeti;
 
     public Stella(String nome, double massa) {
-        super(nome, massa, 0, 0, null);
+        super(nome, massa, X_STELLA, Y_STELLA, null);
         this.pianeti = new ArrayList<>();
     }
 
@@ -28,9 +31,9 @@ public class Stella extends CorpoCeleste {
 
     @Override
     public String toString() {
-        String stampa = "Stella: " + getNome() + "\n\tMassa: " + getMassa() + "kg\n";
+        String stampa = STELLA_TOSTRING + getNome() + MASSA_TOSTRING + getMassa() + KG_TOSTRING;
         for(Pianeta pianeta : getPianeti()){
-            stampa += ">" + pianeta.toString() + "\n";
+            stampa += MAGGIOREDI + pianeta.toString() + LINE_BREAK;
         }
         return stampa;
     }

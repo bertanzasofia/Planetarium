@@ -1,5 +1,7 @@
 package strutturaPlanetarium;
 
+import utilityClass.Costanti;
+import static utilityClass.Costanti.*;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -49,7 +51,6 @@ public abstract class CorpoCeleste {
 
     @Override
     public String toString() {
-        return String.format("%s\n\tMassa: %skg\n\tPosizione X: %.3f\tPosizione Y: %.3f \n\tNodo di riferimento: %s\n\tDistanza rif: %s\n\tCodice ID: %s",
-                nome, massa, posizioneAssoluta.getX(), posizioneAssoluta.getY(),nodoRif.nome,getDistanzaRif(), codiceUnivoco);
+        return String.format(TOSTRING_CORPOCELESTE, nome, massa, posizioneAssoluta.getX(), posizioneAssoluta.getY(),nodoRif.nome,getDistanzaRif()+ KM, codiceUnivoco);
     }
 }

@@ -1,5 +1,6 @@
 package strutturaPlanetarium;
 
+import static utilityClass.Costanti.*;
 import utilityClass.Utility;
 
 import java.util.ArrayList;
@@ -40,6 +41,6 @@ public class Luna extends CorpoCeleste {
     public String toString() {
         ArrayList<CorpoCeleste> path = super.getPath();
         String rotta = Utility.restituisciPath(path);
-        return "Luna: " + super.toString()+"\n\tAngolo rif: "+angoloRif+"\n\tPercorso: "+rotta;
+        return LUNA_TOSTRING + super.toString()+ANGOLO_TOSTRING+angoloRif+ PERCORSO_TOSTRING +rotta;
     }
 }

@@ -10,6 +10,7 @@ import static utilityClass.Costanti.*;
  **/
 
 public class Utility {
+
     public static CorpoCeleste ricercaCorpoCeleste(ArrayList<CorpoCeleste> sistemaStellare, String idCorpo) {
         for (CorpoCeleste corpo : sistemaStellare) {
             // OR necessario se qualcuno prova a usare un ID già esistente come nome
@@ -62,7 +63,7 @@ public class Utility {
         return sommaMassa;
     }
 
-    // calcola la somma pesata del sistema cioè la massa che moltplica la posizione di ogni corpo celeste
+    // calcola la somma pesata del sistema cioè la massa che moltIplica la posizione di ogni corpo celeste
     public static Punto centroMassa(Stella stella){
         double sommaMassaX = stella.getMassa()*stella.getPosizioneAssoluta().getX();
         double sommaMassaY = stella.getMassa()*stella.getPosizioneAssoluta().getY();
@@ -110,7 +111,7 @@ public class Utility {
 
         for (CorpoCeleste corpo : rotta) {
             if (!path.isEmpty()) {
-                path.append(" > ");
+                path.append(MAGGIOREDI_SPAZIATO);
             }
             path.append(corpo.getNome());
         }

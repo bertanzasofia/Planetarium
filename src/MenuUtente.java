@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import static utilityClass.Costanti.*;
 
 public class MenuUtente {
+
     public static void mainMenu(Stella stella) {
         int scelta;
 
@@ -48,10 +49,10 @@ public class MenuUtente {
 
         // case senza break sopra a quelli numerici come condizione OR
         switch (scelta) {
-            case "pianeta":
+            case PIANETA:
             case "1": Gestione.aggiungiPianeta(sistemaStellare, stella);
                 break;
-            case "luna":
+            case LUNA:
             case "2": Gestione.aggiungiLuna(sistemaStellare, stella);
                 break;
         }
@@ -65,14 +66,14 @@ public class MenuUtente {
 
         String scelta = Utility.inputStringColored(COSA_RIMUOVERE, COLORE_INPUT).toLowerCase();
         switch (scelta) {
-            case "pianeta":
+            case PIANETA:
             case "1":
                 Utility.printColored(AVVISO_ELIMINAZIONE, COLORE_AVVISO);
                 String idPianeta = Utility.inputStringColored(PIANETA_DA_RIMUOVERE, COLORE_INPUT);
 
                 Gestione.rimuoviPianeta(sistemaStellare, stella, idPianeta);
                 break;
-            case "luna":
+            case LUNA:
             case "2":
                 if(!Utility.almenoUnaLuna(stella)){
                     Utility.printColored(AVVISO_NO_LUNE, COLORE_AVVISO);

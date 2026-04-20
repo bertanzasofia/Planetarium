@@ -1,5 +1,6 @@
 package strutturaPlanetarium;
 
+import static utilityClass.Costanti.*;
 import java.util.ArrayList;
 
 public class Pianeta extends CorpoCeleste {
@@ -45,9 +46,9 @@ public class Pianeta extends CorpoCeleste {
 
     @Override
     public String toString() {
-        String stampa = "Pianeta: "+super.toString()+"\n\tAngolo rif: "+angoloRif+"\n";
+        String stampa = PIANETA_TOSTRING +super.toString()+ ANGOLO_TOSTRING +angoloRif+ LINE_BREAK;
         for(Luna luna : getLune()){
-            stampa += ">>" + luna.toString() + "\n";
+            stampa += FRECCIAMAGGIOREDI + luna.toString() + LINE_BREAK;
         }
         return stampa;
     }
