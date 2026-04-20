@@ -25,4 +25,13 @@ public class Stella extends CorpoCeleste {
     public void rimuoviPianeta(Pianeta pianeta){
         this.pianeti.remove(pianeta);
     }
+
+    @Override
+    public String toString() {
+        String stampa = "Stella: " + getNome() + "\n\tMassa: " + getMassa() + "kg\n";
+        for(Pianeta pianeta : getPianeti()){
+            stampa += ">" + pianeta.toString() + "\n";
+        }
+        return stampa;
+    }
 }

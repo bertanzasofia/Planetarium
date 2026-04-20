@@ -1,0 +1,54 @@
+package utilityClass;
+
+public class Costanti {
+    public static final String MESSAGGIO_BENVENUTO = "******* Benvenuto in Planetarium, inserisci la stella di riferimento del sistema per iniziare *******";
+
+    public static final int COLORE_BELLEZZA = 35;
+    public static final String AZIONI_POSSIBILI = "\n******* Azioni possibili sulla mappa galattica:";
+    public static final String AGGIUNGI_CORPO = "1-Aggiungi corpo celeste";
+    public static final String RIMUOVI_CORPO = "2-Rimuovi corpo celeste";
+    public static final String RICERCA_CORPO = "3-Ricerca corpo celeste";
+    public static final String VISUALIZZA_SISTEMA = "4-Visualizza sistema";
+    public static final String CALCOLA_CENTRO_DI_MASSA = "5-Calcola centro di massa";
+    public static final String CALCOLA_ROTTA = "6-Calcola rotta";
+    public static final String VERIFICA_COLLISIONI = "7-Verifica collisioni";
+    public static final String USCITA = "0-Uscita";
+    public static final String SCEGLI_OPZIONE = "\n******* scegliere un'opzione: ";
+    public static final int COLORE_INPUT = 34;
+    public static final String TESTO_VUOTO = "";
+    public static final String GRAZIE_CIAO = "******* Grazie per aver usato il nostro sistema, ciao ciao ******* ";
+    public static final String SCELTA_NON_DISPONIBILE = "******* Scelta non disponibile!!";
+    public static final int COLORE_ERRORE = 31;
+    public static final String COSA_AGGIUNGERE = "Cosa vuoi aggiungere? 1-Pianeta 2-Luna: ";
+    public static final String AVVISO_NO_CORPI = "Avviso: Non ci sono corpi celesti!";
+    public static final int COLORE_AVVISO = 33;
+    public static final String COSA_RIMUOVERE = "Cosa vuoi rimuovere? 1-Pianeta 2-Luna: ";
+    public static final String AVVISO_ELIMINAZIONE = "Avviso: L'eliminazione di un pianeta comporta l'eliminazione delle sue lune!!";
+    public static final String PIANETA_DA_RIMUOVERE = "Pianeta da rimuovere (id o nome): ";
+    public static final String AVVISO_NO_LUNE = "Avviso: Non ci sono lune nel sistema stellare!";
+    public static final String AVVISO_RICHIESTA_PIANETA = "Avviso: Inserire prima il pianeta attorno a cui orbita la luna!";
+    public static final String PIANETA_RIFERIMENTO = "Pianeta di riferimento (id o nome): ";
+    public static final String LUNA_DA_ELIMINARE = "Luna da elimiare (id o nome): ";
+    public static final String CORPO_DA_CERCARE = "Corpo celeste cercato (id o nome): ";
+    public static final int COLORE_OUTPUT_RICHIESTE = 32;
+    public static final String MASSA_TOTALE = "Massa totale del sistema stellare: ";
+    public static final String CENTRO_DI_MASSA = "Centro di Massa del sistema stellare: ";
+    public static final String CORPO_DI_PARTENZA = "Corpo celeste di partenza (id o nome): ";
+    public static final String CORPO_DI_ARRIVO = "Corpo celeste di arrivo (id o nome): ";
+    public static final String ROTTA = "\n Rotta: ";
+    public static final String DISTANZA_DA_PERCORRERE = "\n Distanza da percorrere: ";
+    public static final String CORPO_NON_TROVATO = "******* corpo celeste non trovato !! :(";
+    public static final String NO_NOMI_DUPLICATI = "***Impossibile aggiungere nomi duplicati :(((";
+    public static final String TAG_COLORE_APRI = "\u001B[";
+    public static final String M = "m";
+    public static final String TAG_COLORE_CHIUDI = " \u001B[0m";
+    public static final String COLLISIONI_PRESENTI = "Collisioni presenti:";
+    public static final String COLLIDE_CON = " collide con: ";
+    public static final double FI = 0.000001;
+    public static final String NOME_STELLA = "Nome stella: ";
+    public static final String MASSA_STELLA = "Massa stella: ";
+    public static final String PIANETA_ELIMINATO = "******* pianeta eliminato";
+    public static final String PIANETA_NON_TROVATO = "******* pianeta non trovato !!";
+    public static final String LUNA_ELIMINATA = "******* luna eliminata";
+    public static final String LUNA_NON_TROVATA = "******* luna non trovata !!";
+}

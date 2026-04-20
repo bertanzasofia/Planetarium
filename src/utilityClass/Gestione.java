@@ -1,6 +1,5 @@
 package utilityClass;
-
-import arnaldoLib.InputData;
+import static utilityClass.Costanti.*;
 import strutturaPlanetarium.*;
 import java.util.ArrayList;
 
@@ -9,9 +8,10 @@ import java.util.ArrayList;
  **/
 
 public class Gestione {
+
     public static Stella inizializzaSistemaStellare(ArrayList<CorpoCeleste> sistemaStellare) {
-        String nomeStella = Utility.inputStringColored("Nome stella: ", 34);
-        double massaStella = Utility.inputDoubleColored("Massa stella: ", 34);
+        String nomeStella = Utility.inputStringColored(NOME_STELLA, COLORE_INPUT);
+        double massaStella = Utility.inputDoubleColored(MASSA_STELLA, COLORE_INPUT);
 
         Stella stella = new Stella(nomeStella, massaStella);
         sistemaStellare.add(stella);
@@ -19,7 +19,7 @@ public class Gestione {
     }
 
     public static void aggiungiPianeta(ArrayList<CorpoCeleste> sistemaStellare, Stella stella) {
-        String nome = Utility.inputStringColored("Inserisci il nome del pianeta: ", 34);
+        String nome = Utility.chiediNomeUnivoco(sistemaStellare, "Inserisci nome del pianeta: ");
         double massa = Utility.inputDoubleColoredWithMin("Inserisci Massa: ", 34, 0);
         double distanza = Utility.inputDoubleColoredWithMin("Inserisci Distanza dalla stella: ", 34, 0);
         double angolo = Utility.inputDoubleColored("Inserisci Angolo di riferimento: ", 34);
@@ -38,7 +38,7 @@ public class Gestione {
             String pianetaCercatoString = Utility.inputStringColored("Inserisci il nome del pianeta attorno a cui orbita la luna: ", 34);
             Pianeta pianeta = (Pianeta) Utility.ricercaCorpoCeleste(sistemaStellare, pianetaCercatoString);
             if(pianeta!=null) {
-                String nome = Utility.inputStringColored("Inserisci il nome della luna: ", 34);
+                String nome = Utility.chiediNomeUnivoco(sistemaStellare, "Inserisci il nome della luna: ");
                 double massa = Utility.inputDoubleColoredWithMin("Inserisci Massa: ", 34, 0);
                 double distanza = Utility.inputDoubleColoredWithMin("Inserisci Distanza dal pianeta: ", 34, 0);
                 double angolo = Utility.inputDoubleColored("Inserisci Angolo di riferimento dal pianeta: ", 34);
@@ -60,28 +60,15 @@ public class Gestione {
         }
     }
 
-    private static String chiediNomeUnivoco(ArrayList<CorpoCeleste> sistemaStellare, String message) {
-        boolean duplicato;
-        String nome;
-        do {
-            nome = InputData.readNonEmptyString(message, false);
-            duplicato = Utility.esisteQuestoNome(sistemaStellare, nome);
-            if (duplicato) {
-                Utility.printColored("***Impossibile aggiungere nomi duplicati :(((", 33);
-            }
-        } while (duplicato);
-        return nome;
-    }
-
     public static void rimuoviPianeta(ArrayList<CorpoCeleste> sistemaStellare, Stella stella, String idPianeta){
         Pianeta pianeta = (Pianeta) Utility.ricercaCorpoCeleste(sistemaStellare, idPianeta);
-        //todo: se la lista di pianeti e lune è vuota non stare a richiedere un input, restituire solo messaggio. Idem se 0 lune ma >1 pianeta per voce 2 dell'elenco
+
         if(pianeta != null){
             stella.rimuoviPianeta(pianeta);
             sistemaStellare.remove(pianeta);
-            Utility.printColored("******* pianeta eliminato", 31);
+            Utility.printColored(PIANETA_ELIMINATO, COLORE_ERRORE);
         } else {
-            Utility.printColored("******* pianeta non trovato !!", 33);
+            Utility.printColored(PIANETA_NON_TROVATO, COLORE_AVVISO);
         }
     }
 
@@ -93,14 +80,12 @@ public class Gestione {
             if(luna != null){
                 pianeta.rimuoviLuna(luna);
                 sistemaStellare.remove(luna);
-                Utility.printColored("******* luna eliminata", 31);
+                Utility.printColored(LUNA_ELIMINATA, COLORE_ERRORE);
             } else {
-                Utility.printColored("******* luna non trovata !!", 33);
+                Utility.printColored(LUNA_NON_TROVATA, COLORE_AVVISO);
             }
         } else {
-            Utility.printColored("******* pianeta non trovato !!", 33);
+            Utility.printColored(PIANETA_NON_TROVATO, COLORE_AVVISO);
         }
     }
-
-
 }

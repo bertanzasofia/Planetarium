@@ -1,59 +1,53 @@
-import arnaldoLib.InputData;
-import jdk.jshell.execution.Util;
 import strutturaPlanetarium.*;
 import utilityClass.*;
 import java.util.ArrayList;
+
+import static utilityClass.Costanti.*;
 
 public class MenuUtente {
     public static void mainMenu(Stella stella) {
         int scelta;
 
         do{
-            Utility.printColored("\n******* Azioni possibili sulla mappa galattica:", 35);
-            System.out.println("1-Aggiungi corpo celeste");
-            System.out.println("2-Rimuovi corpo celeste");
-            System.out.println("3-Ricerca corpo celeste");
-            System.out.println("4-Visualizza sistema");
-            System.out.println("5-Calcola centro di massa");
-            System.out.println("6-Calcola rotta");
-            System.out.println("7-Verifica collisioni");
-            System.out.println("0-Uscita");
-            scelta = Utility.inputIntColored("\n******* scegliere un'opzione: ", 35);
+            Utility.printColored(AZIONI_POSSIBILI, COLORE_BELLEZZA);
+            System.out.println(AGGIUNGI_CORPO);
+            System.out.println(RIMUOVI_CORPO);
+            System.out.println(RICERCA_CORPO);
+            System.out.println(VISUALIZZA_SISTEMA);
+            System.out.println(CALCOLA_CENTRO_DI_MASSA);
+            System.out.println(CALCOLA_ROTTA);
+            System.out.println(VERIFICA_COLLISIONI);
+            System.out.println(USCITA);
+            scelta = Utility.inputIntColored(SCEGLI_OPZIONE, COLORE_INPUT);
 
             switch (scelta){
-                // nuovo corpo celeste, stella hardcoded nel codice se avremo più stelle variabilizzeremo
+                // stella hardcoded nel codice se avremo più stelle variabilizzeremo
                 case 1: aggiungiCorpoCeleste(Planetarium.sistemaStellare, stella);
                     break;
-                // rimuovi corpo celeste
                 case 2: rimuoviCorpoCeleste(Planetarium.sistemaStellare, stella);
                     break;
-                // ricerca corpo celeste
                 case 3: ricercaCorpoCeleste(Planetarium.sistemaStellare);
                     break;
-                // stampo intero sistema
-                case 4: Utility.stampaSistemaStellare(stella);
+                case 4: Utility.printColored(TESTO_VUOTO, COLORE_INPUT, stella);
                     break;
-                // calcolo centro di massa
                 case 5: calcoloCentroDiMassa(stella);
                     break;
-                // calcolo di una rotta
                 case 6: calcoloRotta();
                     break;
-                // verifica eventuali collisioni
                 case 7: Collisioni.detectCollisioni(stella);
                     break;
-                case 0: Utility.printColored("******* Grazie per aver usato il nostro sistema, ciao ciao ******* ", 35);
+                case 0: Utility.printColored(GRAZIE_CIAO, COLORE_BELLEZZA);
                     break;
-                default: Utility.printColored("**** Scelta non disponibile!!", 31);
-                    break;
+                default: Utility.printColored(SCELTA_NON_DISPONIBILE, COLORE_ERRORE);
             }
         } while(scelta != 0);
     }
 
     public static void aggiungiCorpoCeleste(ArrayList<CorpoCeleste> sistemaStellare, Stella stella) {
-        String scelta = Utility.inputStringColored("Cosa vuoi aggiungere? 1-Pianeta 2-Luna: ", 34).toLowerCase();
+        String scelta = Utility.inputStringColored(COSA_AGGIUNGERE, COLORE_INPUT).toLowerCase();
 
-        switch (scelta) { //Case senza break sopra a quelli numerici come condizione OR
+        // case senza break sopra a quelli numerici come condizione OR
+        switch (scelta) {
             case "pianeta":
             case "1": Gestione.aggiungiPianeta(sistemaStellare, stella);
                 break;
@@ -64,57 +58,66 @@ public class MenuUtente {
     }
 
     public static void rimuoviCorpoCeleste(ArrayList<CorpoCeleste> sistemaStellare, Stella stella) {
-        String scelta = Utility.inputStringColored("Cosa vuoi rimuovere? 1 -Pianeta 2 -Luna: ", 34).toLowerCase();
+        if(sistemaStellare.size() == 1){
+            Utility.printColored(AVVISO_NO_CORPI, COLORE_AVVISO);
+            return;
+        }
 
+        String scelta = Utility.inputStringColored(COSA_RIMUOVERE, COLORE_INPUT).toLowerCase();
         switch (scelta) {
             case "pianeta":
             case "1":
-                Utility.printColored("Avviso: L'eliminazione di un pianeta comporta l'eliminazione delle sue lune !", 33);
-                String idPianeta = Utility.inputStringColored("Pianeta da rimuovere (id o nome): ", 34);
+                Utility.printColored(AVVISO_ELIMINAZIONE, COLORE_AVVISO);
+                String idPianeta = Utility.inputStringColored(PIANETA_DA_RIMUOVERE, COLORE_INPUT);
+
                 Gestione.rimuoviPianeta(sistemaStellare, stella, idPianeta);
                 break;
             case "luna":
             case "2":
-                Utility.printColored("Inserire il pianeta attorno cui orbita la luna: ", 34);
-                String idPadre = Utility.inputStringColored("Pianeta di riferimento (id o nome): ", 34);
-                String idLuna = Utility.inputStringColored("Luna da elimiare (id o nome): ", 34);
+                if(!Utility.almenoUnaLuna(stella)){
+                    Utility.printColored(AVVISO_NO_LUNE, COLORE_AVVISO);
+                    return;
+                }
+
+                Utility.printColored(AVVISO_RICHIESTA_PIANETA, COLORE_AVVISO);
+                String idPadre = Utility.inputStringColored(PIANETA_RIFERIMENTO, COLORE_INPUT);
+                String idLuna = Utility.inputStringColored(LUNA_DA_ELIMINARE, COLORE_INPUT);
+
                 Gestione.rimuoviLuna(sistemaStellare, idPadre, idLuna);
-                sistemaStellare.remove(Utility.ricercaCorpoCeleste(sistemaStellare, idLuna));
                 break;
         }
     }
 
     public static void ricercaCorpoCeleste(ArrayList<CorpoCeleste> sistemaStellare) {
-        String idCorpo = Utility.inputStringColored("Corpo celeste cercato (id o nome): ", 34);
+        String idCorpo = Utility.inputStringColored(CORPO_DA_CERCARE, COLORE_INPUT);
         CorpoCeleste corpoCeleste = Utility.ricercaCorpoCeleste(sistemaStellare, idCorpo);
 
         if(corpoCeleste != null){
-            Utility.printColored("", 32, corpoCeleste);
-            //System.out.println(corpoCeleste); //todo: posizione appare come link(?). da fixare?
+            Utility.printColored(TESTO_VUOTO, COLORE_OUTPUT_RICHIESTE, corpoCeleste);
         } else {
-            Utility.printColored("Corpo celeste non trovato!!! :(", 31);
+            Utility.printColored(CORPO_NON_TROVATO, COLORE_ERRORE);
         }
     }
 
     public static void calcoloCentroDiMassa(Stella stella) {
-        Utility.printColored("Massa totale del sistema stellare: ", 32, Utility.calcolaMassa(stella));
-        Utility.printColored("Centro di Massa del sistema stellare: ", 32, Utility.centroMassa(stella).getX()+" "+Utility.centroMassa(stella).getY());
+        Utility.printColored(MASSA_TOTALE, COLORE_OUTPUT_RICHIESTE, Utility.calcolaMassa(stella));
+        Utility.printColored(CENTRO_DI_MASSA, COLORE_OUTPUT_RICHIESTE, String.format("%.3f %.3f", Utility.centroMassa(stella).getX(), Utility.centroMassa(stella).getY()));
     }
 
     public static void calcoloRotta() {
-        String idPartenza = Utility.inputStringColored("Corpo celeste di partenza (id o nome):", 34);
+        String idPartenza = Utility.inputStringColored(CORPO_DI_PARTENZA, COLORE_INPUT);
         CorpoCeleste partenza = Utility.ricercaCorpoCeleste(Planetarium.sistemaStellare, idPartenza);
-        String idArrivo = Utility.inputStringColored("Corpo celeste di arrivo (id o nome): ", 34);
+        String idArrivo = Utility.inputStringColored(CORPO_DI_ARRIVO, COLORE_INPUT);
         CorpoCeleste destinazione = Utility.ricercaCorpoCeleste(Planetarium.sistemaStellare, idArrivo);
 
         if(partenza != null && destinazione != null){
             String path = Utility.restituisciPath(Utility.calcolaRotta(partenza, destinazione));
             String distanza = Utility.restituisciDistanza(Utility.calcolaRotta(partenza, destinazione));
 
-            Utility.printColored("\n Rotta: ", 32, path);
-            Utility.printColored("\n Distanza da percorrere: ", 32, distanza);
+            Utility.printColored(ROTTA, COLORE_OUTPUT_RICHIESTE, path);
+            Utility.printColored(DISTANZA_DA_PERCORRERE, COLORE_OUTPUT_RICHIESTE, distanza);
         } else {
-            Utility.printColored("Corpi celesti non trovati!!! :(", 31);
+            Utility.printColored(CORPO_NON_TROVATO, COLORE_ERRORE);
         }
     }
 }

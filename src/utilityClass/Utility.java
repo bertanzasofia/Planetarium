@@ -3,6 +3,7 @@ package utilityClass;
 import arnaldoLib.InputData;
 import strutturaPlanetarium.*;
 import java.util.ArrayList;
+import static utilityClass.Costanti.*;
 
 /**
  * Classe di utilità per i soli metodi che non alterano il planetario. Ricercano e restituiscono valori.
@@ -19,29 +20,17 @@ public class Utility {
         return null;
     }
 
-    // todo: magari possiamo definire il toString in stella per questa funzione ??
-    //todo: la stella stampa solo il nome, manca la massa
-    public static void stampaSistemaStellare(Stella stella){
-        printColored("Stella: ", 32, stella.getNome());
-        for(Pianeta pianeta : stella.getPianeti()){
-            printColored(pianeta.toString(), 32);
-            // todo: perchè scorri lune ??
-            for(Luna luna : pianeta.getLune()){
-                System.out.println(pianeta.getLune().toString());
+    public static String chiediNomeUnivoco(ArrayList<CorpoCeleste> sistemaStellare, String message) {
+        boolean duplicato;
+        String nome;
+        do {
+            nome = inputStringColored(message, COLORE_INPUT);
+            duplicato = Utility.esisteQuestoNome(sistemaStellare, nome);
+            if (duplicato) {
+                Utility.printColored(NO_NOMI_DUPLICATI, COLORE_AVVISO);
             }
-        }
-        System.out.println("\u001B[0m");
-    }
-
-    public static Pianeta ricercaPianeta(Stella stella, String pianetaCercato){//todo: mi fa strano non usiamo più questa funzione ma se funziona tutto la togliamo
-        for(Pianeta pianeta: stella.getPianeti())
-        {
-            if(pianeta.getCodiceUnivoco().equalsIgnoreCase(pianetaCercato) || pianeta.getNome().equalsIgnoreCase(pianetaCercato))
-            {
-                return pianeta;
-            }
-        }
-        return null;
+        } while (duplicato);
+        return nome;
     }
 
     public static boolean esisteQuestoNome(ArrayList<CorpoCeleste> sistemaStellare, String nome) {
@@ -53,7 +42,16 @@ public class Utility {
         return duplicato;
     }
 
-    public static double calcolaMassa(Stella stella){ //calcola la massa totale del sistema planetario
+    public static boolean almenoUnaLuna(Stella stella){
+        for(Pianeta pianeta: stella.getPianeti()){
+            if (!pianeta.getLune().isEmpty())
+                return true;
+        }
+        return false;
+    }
+
+    // calcola la massa totale del sistema planetario
+    public static double calcolaMassa(Stella stella){
         double sommaMassa = stella.getMassa();
         for(Pianeta pianeta: stella.getPianeti()){
             sommaMassa += pianeta.getMassa();
@@ -64,7 +62,8 @@ public class Utility {
         return sommaMassa;
     }
 
-    public static Punto centroMassa(Stella stella){//calcola la somma pesata del sistema cioè la massa che moltplica la posizione di ogni corpo celeste
+    // calcola la somma pesata del sistema cioè la massa che moltplica la posizione di ogni corpo celeste
+    public static Punto centroMassa(Stella stella){
         double sommaMassaX = stella.getMassa()*stella.getPosizioneAssoluta().getX();
         double sommaMassaY = stella.getMassa()*stella.getPosizioneAssoluta().getY();
         for(Pianeta pianeta: stella.getPianeti()){
@@ -138,34 +137,34 @@ public class Utility {
      *               35 per bellezza
      * */
     public static void printColored(String testo, int colore){
-        System.out.println("\u001B["+colore+"m "+testo+" \u001B[0m");
+        System.out.println(TAG_COLORE_APRI+colore+M+testo+TAG_COLORE_CHIUDI);
     }
 
     public static void printColored(String testo, int colore, String args){
-        System.out.println("\u001B["+colore+"m "+testo+args+" \u001B[0m");
+        System.out.println(TAG_COLORE_APRI+colore+M+testo+args+TAG_COLORE_CHIUDI);
     }
 
     public static void printColored(String testo, int colore, CorpoCeleste args){
-        System.out.println("\u001B["+colore+"m "+testo+args+" \u001B[0m");
+        System.out.println(TAG_COLORE_APRI+colore+M+testo+args+TAG_COLORE_CHIUDI);
     }
 
     public static void printColored(String testo, int colore, double args){
-        System.out.println("\u001B["+colore+"m "+testo+args+" \u001B[0m");
+        System.out.println(TAG_COLORE_APRI+colore+M+testo+args+TAG_COLORE_CHIUDI);
     }
 
     public static String inputStringColored(String messaggio, int colore) {
-        return InputData.readNonEmptyString("\u001B["+colore+"m "+messaggio+"\u001B[0m", false);
+        return InputData.readNonEmptyString(TAG_COLORE_APRI+colore+M+messaggio+TAG_COLORE_CHIUDI, false);
     }
 
     public static int inputIntColored(String messaggio, int colore) {
-        return InputData.readIntegerBetween("\u001B["+colore+"m "+messaggio+"\u001B[0m", 0, 7);
+        return InputData.readIntegerBetween(TAG_COLORE_APRI+colore+M+messaggio+TAG_COLORE_CHIUDI, 0, 7);
     }
 
     public static double inputDoubleColored(String messaggio, int colore) {
-        return InputData.readDouble("\u001B["+colore+"m "+messaggio+"\u001B[0m");
+        return InputData.readDouble(TAG_COLORE_APRI+colore+M+messaggio+TAG_COLORE_CHIUDI);
     }
 
     public static double inputDoubleColoredWithMin(String messaggio, int colore, double min) {
-        return InputData.readDoubleWithMinimum("\u001B["+colore+"m "+messaggio+"\u001B[0m", min);
+        return InputData.readDoubleWithMinimum(TAG_COLORE_APRI+colore+M+messaggio+TAG_COLORE_CHIUDI, min);
     }
 }

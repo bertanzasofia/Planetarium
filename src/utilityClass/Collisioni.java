@@ -1,6 +1,6 @@
 package utilityClass;
 
-import jdk.jshell.execution.Util;
+import static utilityClass.Costanti.*;
 import strutturaPlanetarium.*;
 
 /**
@@ -8,6 +8,7 @@ import strutturaPlanetarium.*;
  **/
 
 public class Collisioni {
+
     public static void detectCollisioni(Stella stella){
         boolean checkCollisioni = false; //Per stampare un feedback all'utente se non ci sono collisioni
         for(Pianeta pianeta : stella.getPianeti()) {
@@ -28,7 +29,7 @@ public class Collisioni {
             }
         }
         for(Pianeta pianeta : stella.getPianeti()) {
-            Utility.printColored("Collisioni presenti:", 31);
+            Utility.printColored(COLLISIONI_PRESENTI, COLORE_ERRORE);
             if(checkCollisioni){
                 stampaCollisioniPianeta(pianeta);
                 stampaCollisioniLune(pianeta);
@@ -40,14 +41,14 @@ public class Collisioni {
 
     private static void stampaCollisioniPianeta(Pianeta pianeta) {
         if(!pianeta.getCollisioni().isEmpty()) {
-            System.out.println(pianeta.getNome() + " collide con: " + pianeta.getCollisioni());
+            System.out.println(pianeta.getNome() + COLLIDE_CON + pianeta.getCollisioni());
         }
     }
 
     private static void stampaCollisioniLune(Pianeta pianeta) {
         for(Luna luna : pianeta.getLune()){
             if(!luna.getCollisioni().isEmpty()) {
-                System.out.println(luna.getNome() + " collide con: " + luna.getCollisioni());
+                System.out.println(luna.getNome() + COLLIDE_CON + luna.getCollisioni());
             }
         }
     }
@@ -66,7 +67,7 @@ public class Collisioni {
     }
 
     private static void verificaCollisionePianeti(Pianeta pianeta, Pianeta pianetaSecondo) {
-        if(Math.abs(pianeta.getDistanzaRif()- pianetaSecondo.getDistanzaRif())<0.000001 && !pianeta.equals(pianetaSecondo)) {
+        if(Math.abs(pianeta.getDistanzaRif()- pianetaSecondo.getDistanzaRif())< FI && !pianeta.equals(pianetaSecondo)) {
             if(!pianeta.getCollisioni().contains(pianetaSecondo.getNome())){
                 pianeta.aggiungiCollisione(pianetaSecondo);
             }

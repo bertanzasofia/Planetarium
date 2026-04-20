@@ -45,7 +45,10 @@ public class Pianeta extends CorpoCeleste {
 
     @Override
     public String toString() {
-        // todo: stampa posizione relativa e lune
-        return "Pianeta: " + super.toString();
+        String stampa = "Pianeta: "+super.toString()+"\n\tAngolo rif: "+angoloRif+"\n";
+        for(Luna luna : getLune()){
+            stampa += ">>" + luna.toString() + "\n";
+        }
+        return stampa;
     }
 }

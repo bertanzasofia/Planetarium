@@ -49,7 +49,7 @@ public abstract class CorpoCeleste {
 
     @Override
     public String toString() {
-        // todo: andare a capo con la stampa e stampare nodo di riferimento
-        return  nome + "| Massa: " + massa + "kg | Posizione X: " + posizioneAssoluta.getX() +" Posizione Y: "+ posizioneAssoluta.getY()+ "| Codice ID: " + codiceUnivoco;
+        return String.format("%s\n\tMassa: %skg\n\tPosizione X: %.3f\tPosizione Y: %.3f \n\tNodo di riferimento: %s\n\tDistanza rif: %s\n\tCodice ID: %s",
+                nome, massa, posizioneAssoluta.getX(), posizioneAssoluta.getY(),nodoRif.nome,getDistanzaRif(), codiceUnivoco);
     }
 }

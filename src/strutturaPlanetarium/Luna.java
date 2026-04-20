@@ -1,5 +1,7 @@
 package strutturaPlanetarium;
 
+import utilityClass.Utility;
+
 import java.util.ArrayList;
 
 public class Luna extends CorpoCeleste {
@@ -36,7 +38,8 @@ public class Luna extends CorpoCeleste {
 
     @Override
     public String toString() {
-        // todo: stampa posizione relativa
-        return "Luna: " + super.toString();
+        ArrayList<CorpoCeleste> path = super.getPath();
+        String rotta = Utility.restituisciPath(path);
+        return "Luna: " + super.toString()+"\n\tAngolo rif: "+angoloRif+"\n\tPercorso: "+rotta;
     }
 }
