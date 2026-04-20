@@ -1,6 +1,8 @@
+package strutturaPlanetarium;
+
 public class Punto {
-    private double x;
-    private double y;
+    private final double x;
+    private final double y;
 
     public Punto(double x, double y) {
         this.x = x;
@@ -14,4 +16,5 @@ public class Punto {
     public double getY() {
         return y;
     }
+
 }

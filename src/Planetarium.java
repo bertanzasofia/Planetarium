@@ -1,36 +1,16 @@
-import arnaldoLib.InputData;
+import strutturaPlanetarium.*;
+import static utilityClass.Costanti.*;
+import utilityClass.Gestione;
+import utilityClass.Utility;
+import java.util.ArrayList;
 
 public class Planetarium {
+    public static ArrayList<CorpoCeleste> sistemaStellare = new ArrayList<>();
+
     static void main(String[] args) {
-        System.out.println("******* Benvenuto in Planetarium, inserisci la stella di riferimento del sistema per iniziare *******");
-        Stella stella = inizializzaSistemaStellare();
+        Utility.printColored(MESSAGGIO_BENVENUTO, COLORE_BELLEZZA);
+        Stella stella = Gestione.inizializzaSistemaStellare(sistemaStellare);
 
-        int scelta;
-        do{
-            // todo: stampa menù delle azioni disponibili
-
-            scelta = InputData.readIntegerBetween("\n******* scegliere un'opzione: ", 0,1);
-
-            switch (scelta){
-                case 1:
-                    break;
-
-                case 0:
-                    System.out.println("\n******* grazie per aver usato il nostro sistema, ciao ciao ******* ");
-                    break;
-                default:
-                    System.out.println("scelta non disponibile !! \n");
-                    break;
-            }
-        } while(scelta != 0);
-    }
-
-    private static Stella inizializzaSistemaStellare() {
-        String nomeStella;
-        double massaStella;
-
-        nomeStella = InputData.readNonEmptyString("nome stella: ", false);
-        massaStella = InputData.readDouble("massa stella: ");
-        return new Stella(nomeStella, massaStella);
+        MenuUtente.mainMenu(stella);
     }
 }

@@ -315,24 +315,12 @@ public final class InputData {
     do {
       read = InputData.readInteger(message);
 
-      isBelowMin = read < min;
-      if (isBelowMin)
-        // @formatter:off
-        System.out.println(
-          InputData.ERRORS.get("red") + 
-          InputData.ERRORS.get("minimum").formatted(min)
-        );
-        // @formatter:on
-
-      isAboveMax = read > max;
-      if (isAboveMax)
-        // @formatter:off
-        System.out.println(
-          InputData.ERRORS.get("red") + 
-          InputData.ERRORS.get("maximum").formatted(max)
-        );
-        // @formatter:on
-    } while (isBelowMin || isAboveMax);
+      if (read<min) {
+        System.out.println("Valore troppo basso");
+      } else if (read>max) {
+        System.out.println("Valore troppo alto");
+      }
+    } while ((read<min) || (read>max));
 
     return read;
   }
@@ -460,7 +448,7 @@ public final class InputData {
           InputData.ERRORS.get("maximum").formatted(max)
         );
         // @formatter:on
-    } while (isBelowMin);
+    } while (isBelowMin || isAboveMax);
 
     return read;
   }
