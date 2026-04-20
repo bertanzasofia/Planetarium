@@ -1,4 +1,5 @@
 package utilityClass;
+
 import static utilityClass.Costanti.*;
 import strutturaPlanetarium.*;
 import java.util.ArrayList;
@@ -8,7 +9,6 @@ import java.util.ArrayList;
  **/
 
 public class Gestione {
-
     public static Stella inizializzaSistemaStellare(ArrayList<CorpoCeleste> sistemaStellare) {
         String nomeStella = Utility.inputStringColored(NOME_STELLA, COLORE_INPUT);
         double massaStella = Utility.inputDoubleColored(MASSA_STELLA, COLORE_INPUT);
@@ -19,44 +19,44 @@ public class Gestione {
     }
 
     public static void aggiungiPianeta(ArrayList<CorpoCeleste> sistemaStellare, Stella stella) {
-        String nome = Utility.chiediNomeUnivoco(sistemaStellare, "Inserisci nome del pianeta: ");
-        double massa = Utility.inputDoubleColoredWithMin("Inserisci Massa: ", 34, 0);
-        double distanza = Utility.inputDoubleColoredWithMin("Inserisci Distanza dalla stella: ", 34, 0);
-        double angolo = Utility.inputDoubleColored("Inserisci Angolo di riferimento: ", 34);
+        String nome = Utility.chiediNomeUnivoco(sistemaStellare, INSERISCI_NOME_DEL_PIANETA);
+        double massa = Utility.inputDoubleColoredWithMin(INSERISCI_MASSA, COLORE_INPUT, MIN);
+        double distanza = Utility.inputDoubleColoredWithMin(INSERISCI_DISTANZA, COLORE_INPUT, MIN);
+        double angolo = Utility.inputDoubleColored(INSERISCI_ANGOLO, COLORE_INPUT);
 
         Pianeta pianeta = new Pianeta(nome, massa, stella, distanza, angolo);
         stella.aggiungiPianeta(pianeta);
         sistemaStellare.add(pianeta);
 
-        System.out.println("\u001B[32m");
-        System.out.printf("%s è stato aggiunto, ID: %s \n", pianeta.getNome(), pianeta.getCodiceUnivoco());
-        System.out.println("\u001B[0m");
+        System.out.println(TAG_COLORE_APRI+COLORE_OUTPUT_RICHIESTE+M);
+        System.out.printf(PIANETA_STATO_AGGIUNTO, pianeta.getNome(), pianeta.getCodiceUnivoco());
+        System.out.println(TAG_COLORE_CHIUDI);
     }
 
     public static void aggiungiLuna(ArrayList<CorpoCeleste> sistemaStellare, Stella stella) {
         if(!stella.getPianeti().isEmpty()) {
-            String pianetaCercatoString = Utility.inputStringColored("Inserisci il nome del pianeta attorno a cui orbita la luna: ", 34);
+            String pianetaCercatoString = Utility.inputStringColored(INSERISCI_NOME_PIANETA_DI_LUNA, COLORE_INPUT);
             Pianeta pianeta = (Pianeta) Utility.ricercaCorpoCeleste(sistemaStellare, pianetaCercatoString);
             if(pianeta!=null) {
-                String nome = Utility.chiediNomeUnivoco(sistemaStellare, "Inserisci il nome della luna: ");
-                double massa = Utility.inputDoubleColoredWithMin("Inserisci Massa: ", 34, 0);
-                double distanza = Utility.inputDoubleColoredWithMin("Inserisci Distanza dal pianeta: ", 34, 0);
-                double angolo = Utility.inputDoubleColored("Inserisci Angolo di riferimento dal pianeta: ", 34);
+                String nome = Utility.chiediNomeUnivoco(sistemaStellare, INSERISCI_NOME_LUNA);
+                double massa = Utility.inputDoubleColoredWithMin(INSERISCI_MASSA, COLORE_INPUT, MIN);
+                double distanza = Utility.inputDoubleColoredWithMin(INSERISCI_DISTANZA_DAL_PIANETA, COLORE_INPUT, MIN);
+                double angolo = Utility.inputDoubleColored(INSERISCI_ANGOLO_DI_RIFERIMENTO_DAL_PIANETA, COLORE_INPUT);
 
                 Luna luna = new Luna(nome, massa, pianeta, distanza, angolo);
                 pianeta.aggiungiLuna(luna);
                 sistemaStellare.add(luna);
 
-                System.out.println("\u001B[32m");
-                System.out.printf("%s è stata aggiunta a %s, ID: %s \n", luna.getNome(), pianeta.getNome(), luna.getCodiceUnivoco());
-                System.out.println("\u001B[0m");
+                System.out.println(TAG_COLORE_APRI+COLORE_OUTPUT_RICHIESTE+M);
+                System.out.printf(LUNA_STATA_AGGIUNTA, luna.getNome(), pianeta.getNome(), luna.getCodiceUnivoco());
+                System.out.println(TAG_COLORE_CHIUDI);
             }
             else {
-                Utility.printColored("***Impossibile trovare il pianeta specificato :((", 31);
+                Utility.printColored(IMPOSSIBILE_TROVARE_PIANETA, COLORE_ERRORE);
             }
         }
         else{
-            Utility.printColored("Si prega di inserire un pianeta prima di continuare", 33);
+            Utility.printColored(INSERISCI_PIANETA_PRIMA_GRAZIE, COLORE_AVVISO);
         }
     }
 

@@ -2,7 +2,6 @@ package utilityClass;
 
 public class Costanti {
     public static final String MESSAGGIO_BENVENUTO = "******* Benvenuto in Planetarium, inserisci la stella di riferimento del sistema per iniziare *******";
-
     public static final int COLORE_BELLEZZA = 35;
     public static final String AZIONI_POSSIBILI = "\n******* Azioni possibili sulla mappa galattica:";
     public static final String AGGIUNGI_CORPO = "1-Aggiungi corpo celeste";
@@ -51,4 +50,17 @@ public class Costanti {
     public static final String PIANETA_NON_TROVATO = "******* pianeta non trovato !!";
     public static final String LUNA_ELIMINATA = "******* luna eliminata";
     public static final String LUNA_NON_TROVATA = "******* luna non trovata !!";
+    public static final String INSERISCI_NOME_DEL_PIANETA = "Inserisci nome del pianeta: ";
+    public static final String INSERISCI_MASSA = "Inserisci Massa: ";
+    public static final int MIN = 0;
+    public static final String INSERISCI_DISTANZA = "Inserisci Distanza dalla stella: ";
+    public static final String INSERISCI_ANGOLO = "Inserisci Angolo di riferimento: ";
+    public static final String PIANETA_STATO_AGGIUNTO = "%s è stato aggiunto, ID: %s \n";
+    public static final String INSERISCI_NOME_LUNA = "Inserisci il nome della luna: ";
+    public static final String INSERISCI_NOME_PIANETA_DI_LUNA = "Inserisci il nome del pianeta attorno a cui orbita la luna: ";
+    public static final String INSERISCI_DISTANZA_DAL_PIANETA = "Inserisci Distanza dal pianeta: ";
+    public static final String INSERISCI_ANGOLO_DI_RIFERIMENTO_DAL_PIANETA = "Inserisci Angolo di riferimento dal pianeta: ";
+    public static final String LUNA_STATA_AGGIUNTA = "%s è stata aggiunta a %s, ID: %s \n";
+    public static final String IMPOSSIBILE_TROVARE_PIANETA = "***Impossibile trovare il pianeta specificato :((";
+    public static final String INSERISCI_PIANETA_PRIMA_GRAZIE = "Si prega di inserire un pianeta prima di continuare";
 }

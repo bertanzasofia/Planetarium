@@ -2,8 +2,6 @@ import strutturaPlanetarium.*;
 import static utilityClass.Costanti.*;
 import utilityClass.Gestione;
 import utilityClass.Utility;
-
-
 import java.util.ArrayList;
 
 public class Planetarium {
