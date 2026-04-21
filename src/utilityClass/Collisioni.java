@@ -28,8 +28,8 @@ public class Collisioni {
                 }
             }
         }
+        Utility.printColored(COLLISIONI_PRESENTI, COLORE_ERRORE);
         for(Pianeta pianeta : stella.getPianeti()) {
-            Utility.printColored(COLLISIONI_PRESENTI, COLORE_ERRORE);
             if(checkCollisioni){
                 stampaCollisioniPianeta(pianeta);
                 stampaCollisioniLune(pianeta);
